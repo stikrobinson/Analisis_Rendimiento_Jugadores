@@ -1,7 +1,7 @@
 # Analisis Rendimiento de Jugadores FIFA-19
 Aplicación de técnicas de análisis de datos para evaluar su rendimiento de jugadores de fútbol. Incluye limpieza de datos, exploración del dataset y la creación de un modelo predictivo utilizando técnicas de machine learning. El objetivo será predecir métricas de rendimiento de los jugadores.
 
-## ⚙️ Entrenamiento del Modelo
+## Entrenamiento del Modelo
 
 Después del análisis exploratorio (EDA), se construyeron y evaluaron distintos modelos para **predecir el rendimiento general (`Overall`) de los jugadores**.  
 El proceso incluyó el uso de regresión lineal, Random Forest básico y una versión optimizada mediante *Optuna* (Random Forest Tuned).  
@@ -50,8 +50,8 @@ Se compararon tres enfoques:
 | Random Forest Base | 0.957 | 0.910 | 1.470 |
 | Lineal | 0.951 | 1.123 | 1.480 |
 
-🔹 Cuanto mayor es el valor de R², más cerca está la predicción de los datos reales.  
-🔹 Cuanto menores son MAE y RMSE, menos se equivoca el modelo.
+- Cuanto mayor es el valor de R², más cerca está la predicción de los datos reales.  
+- Cuanto menores son MAE y RMSE, menos se equivoca el modelo.
 
 El modelo **Random Forest Tuned** es el más preciso, reduciendo los errores y explicando el **96% del rendimiento real** de los jugadores.
 
@@ -84,7 +84,7 @@ Esto demuestra que el modelo es **estable, confiable y sin sesgos evidentes**.
 
 ---
 
-### 🧠 Importancia por Rol
+### Importancia por Rol
 
 ![Importancia por rol](Gráficas/atacantes.PNG) 
 ![Defensas](Gráficas/defensas.PNG)
