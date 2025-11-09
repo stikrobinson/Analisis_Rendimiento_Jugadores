@@ -129,7 +129,7 @@ Esto coincide con el comportamiento real en el fútbol: los jugadores jóvenes s
 
 ---
 
-📎 **Resumen del entrenamiento:**
+**Resumen del entrenamiento:**
 - El modelo Random Forest Tuned fue el más eficiente y preciso.  
 - Los resultados fueron coherentes con el comportamiento real del rendimiento deportivo.  
 - No se detectaron sesgos importantes entre roles, edades o pies dominantes.  
