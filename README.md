@@ -1,16 +1,10 @@
 # Analisis Rendimiento de Jugadores FIFA-19
 Aplicación de técnicas de análisis de datos para evaluar su rendimiento de jugadores de fútbol. Incluye limpieza de datos, exploración del dataset y la creación de un modelo predictivo utilizando técnicas de machine learning. El objetivo será predecir métricas de rendimiento (Overall) de los jugadores a partir de variables técnicas, físicas y económicas.
 
-## Entrenamiento del Modelo
-
-Después del análisis exploratorio (EDA), se construyeron y evaluaron distintos modelos para **predecir el rendimiento general (`Overall`) de los jugadores**.  
-El proceso incluyó el uso de regresión lineal, Random Forest básico y una versión optimizada mediante *Optuna* (Random Forest Tuned).  
-
-El modelo final alcanzó un **R² = 0.962** y un **error promedio (MAE) de 0.872**, lo que significa que **predice con gran precisión el nivel de un jugador** usando variables físicas, técnicas y económicas.
-
 ---
-### Preparación y limpieza de los datos
-Fuente: Dataset oficial FIFA-19 (Kaggle, versión 2019): https://www.kaggle.com/datasets/javagarm/fifa-19-complete-player-dataset
+
+## 1. Preparación y limpieza de los datos
+**Fuente: Dataset oficial FIFA-19 (Kaggle, versión 2019):** https://www.kaggle.com/datasets/javagarm/fifa-19-complete-player-dataset
 
 Procesos aplicados:
 
@@ -26,8 +20,8 @@ Procesos aplicados:
 - Eliminación de registros nulos en atributos críticos (Overall, Potential, ValueUSD, WageUSD).
 
 ---
-### Análisis exploratorio (EDA)
-**Análisis univarido**
+## 2. Análisis exploratorio (EDA)
+### Análisis univarido
 
 Se examinaron las distribuciones de las principales variables (Overall, Special, Log(ValueUSD)) por rol: atacantes, mediocampistas, defensas y arqueros.
 
@@ -42,8 +36,7 @@ Hallazgos principales:
 Los jugadores de campo siguen patrones similares de rendimiento y valor, mientras que los arqueros conforman un grupo estadísticamente distinto, lo que valida su análisis y modelado independiente.
 
 
-**Análisis bivariados**
-
+### Análisis bivariados
 
 - Potential vs Overall: relación casi lineal y positiva → los jugadores con mayor potencial tienden a tener un mejor rendimiento actual.
 
@@ -59,7 +52,9 @@ Los jugadores de campo siguen patrones similares de rendimiento y valor, mientra
 
 Estas relaciones confirman que Potential, Special, WageUSD y Age² son las variables más relevantes para el modelado predictivo del rendimiento.
 
-**Análisis multivariado**
+
+
+### Análisis multivariado
 
 Distribución por rol:
 - Defensas: 5 699  
@@ -84,6 +79,16 @@ Correlaciones clave:
 
 
 ---
+
+## 3. Entrenamiento del Modelo
+
+Después del análisis exploratorio (EDA), se construyeron y evaluaron distintos modelos para **predecir el rendimiento general (`Overall`) de los jugadores**.  
+El proceso incluyó el uso de regresión lineal, Random Forest básico y una versión optimizada mediante *Optuna* (Random Forest Tuned).  
+
+El modelo final alcanzó un **R² = 0.962** y un **error promedio (MAE) de 0.872**, lo que significa que **predice con gran precisión el nivel de un jugador** usando variables físicas, técnicas y económicas.
+
+---
+
 ### Importancia de las variables
 
 ![Importancia de variables](Gráficas/importanciaV.PNG)
