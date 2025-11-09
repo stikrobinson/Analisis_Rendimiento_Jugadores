@@ -25,11 +25,22 @@ Procesos aplicados:
 
 Se examinaron las distribuciones de las principales variables (Overall, Special, Log(ValueUSD)) por rol: atacantes, mediocampistas, defensas y arqueros.
 
-Hallazgos principales:
+
+**Gráficas atacantes:**
+![Jugadores Atacantes](Gráficas/univarialAtacantes.png)
+
+**Graficas mediocampos:**
+![Jugadores MedioCampos](Gráficas/univarialMediocampista.png)
+
+**Graficas defensas:**
+![Jugadores Defensas](Gráficas/univarialDefensas.png)
 
 - Las variables Overall y Special presentan una distribución casi normal en atacantes, mediocampos y defensas, con medianas cercanas a 65–70 puntos.
 
 - El valor de mercado (Log(ValueUSD)) muestra una mayor dispersión, evidenciando la desigualdad económica entre jugadores promedio y élite.
+
+**Graficas arqueros:**
+![Jugadores Arqueros](Gráficas/univarialArqueros.png)
 
 - En los arqueros, las tres distribuciones cambian notablemente: El Overall es más irregular y menos centrado, el Special es más concentrado (entre 1000 y 1200), el Log(ValueUSD) está sesgado a la izquierda: la mayoría de los porteros tienen bajo valor de mercado, con pocos casos extremos.
 
@@ -37,6 +48,8 @@ Los jugadores de campo siguen patrones similares de rendimiento y valor, mientra
 
 
 ### Análisis bivariados
+
+![Bivariado campos](Gráficas/bivarialCampo.png)
 
 - Potential vs Overall: relación casi lineal y positiva → los jugadores con mayor potencial tienden a tener un mejor rendimiento actual.
 
@@ -47,6 +60,7 @@ Los jugadores de campo siguen patrones similares de rendimiento y valor, mientra
 - Log(ValueUSD) vs Overall: crecimiento logarítmico → el valor de mercado se estabiliza en jugadores élite, lo que muestra una saturación económica natural.
 
   
+![Bivariado campos](Gráficas/gkdivingArquero.png)
 
 - En arqueros, la variable GKDiving tiene la mayor influencia sobre Overall, reflejando la dependencia de habilidades específicas.
 
@@ -63,6 +77,12 @@ Distribución por rol:
 - Arqueros: 2 015  
 
 Correlaciones clave:
+
+**Matriz de correlaciones:**
+![Bivariado campos](Gráficas/correlacion.png)
+
+En base a la matriz se obtiene:
+
 | Variables | Correlación | Interpretación |
 |------------|--------------|----------------|
 | Overall - Special | **0.80** | Relación directa entre habilidad técnica y rendimiento |
@@ -70,7 +90,6 @@ Correlaciones clave:
 | Overall - WageUSD | **0.72** | Sueldo refleja desempeño |
 | Overall - Potential | **0.65** | Potencial y desempeño casi lineales |
 | Altura/Peso | ~0.10 | Influencia marginal |
-
 
 - Los jugadores entre **20–30 años** alcanzan el mejor rendimiento promedio.
 - `Potential` y `Special` son los mejores predictores del desempeño.  
