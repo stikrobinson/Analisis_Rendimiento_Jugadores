@@ -235,3 +235,24 @@ Esto coincide con el comportamiento real en el fútbol: los jugadores jóvenes s
 
 ---
 
+## 4. Hallazgos
+
+- Los jugadores tienen su rendimiento máximo hasta los 30 años aproximadamente. Luego, el rendimiento tiende a descender gradualmente, reflejando el desgaste físico acumulado.
+- Existe una correlación positiva muy fuerte entre Potential y Overall, lo que demuestra que los jugadores con mayor potencial tienden a alcanzar también niveles altos de rendimiento actual.
+- Aunque las medianas de rendimiento (Overall) son similares entre defensas, mediocampistas y atacantes, se encontró que los jugadores ofensivos (atacantes y medios) poseen valores de mercado y salarios ligeramente más altos.
+- El valor económico (ValueUSD) aumenta de forma exponencial con el rendimiento, pero presenta un punto de saturación alrededor de un Overall aproximadamente de 80, lo que indica un “techo” en la valoración de jugadores de élite.
+
+## 5. Conclusiones
+
+- El modelo Random Forest identificó que las variables más determinantes para predecir el "Overall" son Log_WageUSD (Salario) que explica más del 53% de la influencia, Special (habilidades técnicas y físicas combinadas) con 18.2% de influencia y potential (Potencial) con 15.6% de influencia. Estas tres variables juntas representan más del 85% de la importancia total del modelo.
+- El modelo Random Forest demostró una mejor capacidad de generalización que la regresión lineal para el rendimiento de los jugadores.
+- Es posible predecir el rendimiento de un jugador con alta precisión con un 96.2% de la variabilidad explicada utilizando modelos de machine learning.
+- El rendimiento de un jugador está más influido por sus atributos técnicos (Special, Potential) y económicos (salario, valor) que por factores físicos o posicionales.
+
+
+## 6. Recomendaciones
+
+- Para futuras predicciones del "Overall", es una buena opción utilizar el modelo **Random Forest Tuned**, ya que demostró un rendimiento superior, un coeficiente de determinación más alto (0.961) y un error absoluto medio más bajo (0.879) en comparación con el modelo lineal.
+- Dado que variables como WeightKG (0.9%), HeightCM (0.6%), WorkRate_Att (0.19%) y WorkRate_Def (0.19%) tienen una influencia prácticamente nula, se recomienda **eliminarlas del modelo**. Esto puede simplificar el modelo sin afectar significativamente su precisión.
+- Probar otros algoritmos como **XGBoost**, dado que suelen ser más precisos que el Random Forest y ofrecen mejor rendimiento y velocidad, especialmente con datos grandes.
+- Agregar información más reciente sobre jugadores de la FIFA, para hacer el modelo más general donde se incluyan variables nuevas que puedan influir en el rendimiento como minutos jugados, lesiones o goles.
