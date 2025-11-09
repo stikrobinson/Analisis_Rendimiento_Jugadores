@@ -76,9 +76,9 @@ Distribución por rol:
 - Atacantes: 3 414  
 - Arqueros: 2 015  
 
-Correlaciones clave:
 
 **Matriz de correlaciones:**
+
 ![Bivariado campos](Gráficas/correlacion.png)
 
 En base a la matriz se obtiene:
