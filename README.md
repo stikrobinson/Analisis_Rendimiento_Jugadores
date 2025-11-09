@@ -252,7 +252,7 @@ Esto coincide con el comportamiento real en el fútbol: los jugadores jóvenes s
 
 ## 6. Recomendaciones
 
-- Para futuras predicciones del "Overall", es una buena opción utilizar el modelo **Random Forest Tuned**, ya que demostró un rendimiento superior, un coeficiente de determinación más alto (0.961) y un error absoluto medio más bajo (0.879) en comparación con el modelo lineal.
-- Dado que variables como WeightKG (0.9%), HeightCM (0.6%), WorkRate_Att (0.19%) y WorkRate_Def (0.19%) tienen una influencia prácticamente nula, se recomienda **eliminarlas del modelo**. Esto puede simplificar el modelo sin afectar significativamente su precisión.
-- Probar otros algoritmos como **XGBoost**, dado que suelen ser más precisos que el Random Forest y ofrecen mejor rendimiento y velocidad, especialmente con datos grandes.
+- Para futuras predicciones del "Overall", es una buena opción utilizar el modelo Random Forest Tuned, ya que demostró un rendimiento superior, un coeficiente de determinación más alto (0.961) y un error absoluto medio más bajo (0.879) en comparación con el modelo lineal.
+- Dado que variables como WeightKG (0.9%), HeightCM (0.6%), WorkRate_Att (0.19%) y WorkRate_Def (0.19%) tienen una influencia prácticamente nula, se recomienda eliminarlas del modelo. Esto puede simplificar el modelo sin afectar significativamente su precisión.
+- Probar otros algoritmos como XGBoost, dado que suelen ser más precisos que el Random Forest y ofrecen mejor rendimiento y velocidad, especialmente con datos grandes.
 - Agregar información más reciente sobre jugadores de la FIFA, para hacer el modelo más general donde se incluyan variables nuevas que puedan influir en el rendimiento como minutos jugados, lesiones o goles.
