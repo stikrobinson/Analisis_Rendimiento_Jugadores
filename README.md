@@ -242,6 +242,8 @@ Esto coincide con el comportamiento real en el fútbol: los jugadores jóvenes s
 - Aunque las medianas de rendimiento (Overall) son similares entre defensas, mediocampistas y atacantes, se encontró que los jugadores ofensivos (atacantes y medios) poseen valores de mercado y salarios ligeramente más altos.
 - El valor económico (ValueUSD) aumenta de forma exponencial con el rendimiento, pero presenta un punto de saturación alrededor de un Overall aproximadamente de 80, lo que indica un “techo” en la valoración de jugadores de élite.
 
+---
+
 ## 5. Conclusiones
 
 - El modelo Random Forest identificó que las variables más determinantes para predecir el "Overall" son Log_WageUSD (Salario) que explica más del 53% de la influencia, Special (habilidades técnicas y físicas combinadas) con 18.2% de influencia y potential (Potencial) con 15.6% de influencia. Estas tres variables juntas representan más del 85% de la importancia total del modelo.
@@ -249,6 +251,7 @@ Esto coincide con el comportamiento real en el fútbol: los jugadores jóvenes s
 - Es posible predecir el rendimiento de un jugador con alta precisión con un 96.2% de la variabilidad explicada utilizando modelos de machine learning.
 - El rendimiento de un jugador está más influido por sus atributos técnicos (Special, Potential) y económicos (salario, valor) que por factores físicos o posicionales.
 
+---
 
 ## 6. Recomendaciones
 
@@ -256,3 +259,64 @@ Esto coincide con el comportamiento real en el fútbol: los jugadores jóvenes s
 - Dado que variables como WeightKG (0.9%), HeightCM (0.6%), WorkRate_Att (0.19%) y WorkRate_Def (0.19%) tienen una influencia prácticamente nula, se recomienda eliminarlas del modelo. Esto puede simplificar el modelo sin afectar significativamente su precisión.
 - Probar otros algoritmos como XGBoost, dado que suelen ser más precisos que el Random Forest y ofrecen mejor rendimiento y velocidad, especialmente con datos grandes.
 - Agregar información más reciente sobre jugadores de la FIFA, para hacer el modelo más general donde se incluyan variables nuevas que puedan influir en el rendimiento como minutos jugados, lesiones o goles.
+
+---
+
+## 7. Demostración (Inferencias)
+
+Para comprobar el funcionamiento del modelo entrenado, se creó un **pipeline automático** que permite predecir el rendimiento de un jugador nuevo a partir de sus características básicas.
+
+Ejemplo de uso dentro del notebook:
+
+```python
+import pandas as pd
+import joblib
+
+# Cargar el pipeline entrenado
+modelo_rf_tuned = joblib.load("models/pipeline_fifa.pkl")
+
+# Datos de ejemplo
+nuevo_jugador = {
+    "Role": "Midfielder",
+    "Age": 25,
+    "Potential": 85,
+    "Special": 1900,
+    "HeightCM": 178,
+    "WeightKG": 72,
+    "WageUSD": 73000,
+    "WorkRate_Att": 2,
+    "WorkRate_Def": 2
+}
+
+# Predicción
+pred = modelo_rf_tuned.predict(pd.DataFrame([nuevo_jugador]))
+print(f"Predicción de Overall: {pred[0]:.2f}")
+
+
+## 5. Reproducibilidad
+
+### Requisitos
+Instala las dependencias (puedes fijar versiones si el entorno lo requiere):
+
+```bash
+pip install -r requirements.txt
+
+```
+El pipeline devuelve una estimación precisa del rendimiento general (Overall) basado en las variables ingresadas.
+El modelo selecciona automáticamente el submodelo adecuado según el rol del jugador (campo o arquero).
+
+---
+
+## 8. Reproducibilidad
+
+Instalar dependencias del proyecto:
+
+```
+pip install -r requirements.txt
+```
+
+Abrir el notebook principal:
+
+```
+jupyter notebook notebooks/02_Pipeline_Final.ipynb
+```
