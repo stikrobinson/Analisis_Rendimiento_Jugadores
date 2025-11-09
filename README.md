@@ -262,20 +262,40 @@ Esto coincide con el comportamiento real en el fútbol: los jugadores jóvenes s
 
 ---
 
-## 7. Demostración (Inferencias)
+## 7. Demostración e Inferencias (Uso del Pipeline)
 
-Para comprobar el funcionamiento del modelo entrenado, se creó un **pipeline automático** que permite predecir el rendimiento de un jugador nuevo a partir de sus características básicas.
+Este pipeline contiene **todo el proceso automático de predicción del rendimiento (Overall)** de los jugadores FIFA-19.  
+Integra desde la limpieza de datos hasta la predicción final del modelo optimizado (Random Forest Tuned).
 
-Ejemplo de uso dentro del notebook:
+Incluye:
+- Limpieza y conversión de datos (altura, peso, salario, etc.).
+- Creación de variables derivadas (Age², Log_WageUSD, WorkRate_Att, etc.).
+- Selección automática del modelo según el rol (jugador de campo o arquero).
+- Predicción final del atributo **Overall**.
+
+
+### Instalación de dependencias
+
+Antes de ejecutar el pipeline, instala las librerías necesarias usando el archivo `requirements.txt`:
+
+```bash
+pip install -r requirements.txt
+```
+
+###Cargar el pipeline entrenado
+
+El modelo final fue empaquetado como un pipeline completo en models/pipeline_fifa.pkl.
+Para usarlo en nuevas predicciones:
 
 ```python
-import pandas as pd
 import joblib
+import pandas as pd
 
-# Cargar el pipeline entrenado
-modelo_rf_tuned = joblib.load("models/pipeline_fifa.pkl")
+# Cargar el pipeline
+pipe = joblib.load("models/pipeline_fifa.pkl")
+print("Pipeline cargado correctamente")
 
-# Datos de ejemplo
+# Ejemplo de jugador nuevo
 nuevo_jugador = {
     "Role": "Midfielder",
     "Age": 25,
@@ -289,34 +309,9 @@ nuevo_jugador = {
 }
 
 # Predicción
-pred = modelo_rf_tuned.predict(pd.DataFrame([nuevo_jugador]))
+pred = pipe.predict(pd.DataFrame([nuevo_jugador]))
 print(f"Predicción de Overall: {pred[0]:.2f}")
-
-
-## 5. Reproducibilidad
-
-### Requisitos
-Instala las dependencias (puedes fijar versiones si el entorno lo requiere):
-
-```bash
-pip install -r requirements.txt
-
 ```
-El pipeline devuelve una estimación precisa del rendimiento general (Overall) basado en las variables ingresadas.
-El modelo selecciona automáticamente el submodelo adecuado según el rol del jugador (campo o arquero).
+El pipeline devuelve una estimación del rendimiento general (Overall) con base en las variables ingresadas.
+Además, selecciona automáticamente el submodelo correspondiente (jugadores de campo o arqueros).
 
----
-
-## 8. Reproducibilidad
-
-Instalar dependencias del proyecto:
-
-```
-pip install -r requirements.txt
-```
-
-Abrir el notebook principal:
-
-```
-jupyter notebook notebooks/02_Pipeline_Final.ipynb
-```
