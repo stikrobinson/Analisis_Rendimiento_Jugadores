@@ -1,5 +1,5 @@
 # Analisis Rendimiento de Jugadores FIFA-19
-Aplicación de técnicas de análisis de datos para evaluar su rendimiento de jugadores de fútbol. Incluye limpieza de datos, exploración del dataset y la creación de un modelo predictivo utilizando técnicas de machine learning. El objetivo será predecir métricas de rendimiento de los jugadores.
+Aplicación de técnicas de análisis de datos para evaluar su rendimiento de jugadores de fútbol. Incluye limpieza de datos, exploración del dataset y la creación de un modelo predictivo utilizando técnicas de machine learning. El objetivo será predecir métricas de rendimiento (Overall) de los jugadores a partir de variables técnicas, físicas y económicas.
 
 ## Entrenamiento del Modelo
 
@@ -9,7 +9,81 @@ El proceso incluyó el uso de regresión lineal, Random Forest básico y una ver
 El modelo final alcanzó un **R² = 0.962** y un **error promedio (MAE) de 0.872**, lo que significa que **predice con gran precisión el nivel de un jugador** usando variables físicas, técnicas y económicas.
 
 ---
+### Preparación y limpieza de los datos
+Fuente: Dataset oficial FIFA-19 (Kaggle, versión 2019): https://www.kaggle.com/datasets/javagarm/fifa-19-complete-player-dataset
 
+Procesos aplicados:
+
+- Eliminación de columnas no relevantes:
+'Photo', 'Flag', 'Club Logo', 'Real Face', 'Unnamed: 0', 'International Reputation', 'Nationality', 'Jersey Number', 'Joined', 'Loaned From', 'Contract Valid Until', 'Release Clause', 'Club'.
+
+- Conversión de unidades a sistema métrico (WeightKG, HeightCM).
+
+- Creación de variables derivadas, Age² (edad al cuadrado) para capturar efectos no lineales, y Log_ValueUSD y Log_WageUSD (transformación logarítmica) para estabilizar la varianza.
+
+- Reducción del impacto de outliers en edades, salarios, pesos y estaturas.
+  
+- Eliminación de registros nulos en atributos críticos (Overall, Potential, ValueUSD, WageUSD).
+
+---
+### Análisis exploratorio (EDA)
+**Análisis univarido**
+
+Se examinaron las distribuciones de las principales variables (Overall, Special, Log(ValueUSD)) por rol: atacantes, mediocampistas, defensas y arqueros.
+
+Hallazgos principales:
+
+- Las variables Overall y Special presentan una distribución casi normal en atacantes, mediocampos y defensas, con medianas cercanas a 65–70 puntos.
+
+- El valor de mercado (Log(ValueUSD)) muestra una mayor dispersión, evidenciando la desigualdad económica entre jugadores promedio y élite.
+
+- En los arqueros, las tres distribuciones cambian notablemente: El Overall es más irregular y menos centrado, el Special es más concentrado (entre 1000 y 1200), el Log(ValueUSD) está sesgado a la izquierda: la mayoría de los porteros tienen bajo valor de mercado, con pocos casos extremos.
+
+Los jugadores de campo siguen patrones similares de rendimiento y valor, mientras que los arqueros conforman un grupo estadísticamente distinto, lo que valida su análisis y modelado independiente.
+
+
+**Análisis bivariados**
+
+
+- Potential vs Overall: relación casi lineal y positiva → los jugadores con mayor potencial tienden a tener un mejor rendimiento actual.
+
+- Special vs Overall: correlación muy alta → las habilidades técnicas agregadas son un fuerte indicador del desempeño.
+
+- Age vs Overall: relación no lineal → el rendimiento crece hasta los 28–30 años y luego declina, justificando la variable Age².
+
+- Log(ValueUSD) vs Overall: crecimiento logarítmico → el valor de mercado se estabiliza en jugadores élite, lo que muestra una saturación económica natural.
+
+  
+
+- En arqueros, la variable GKDiving tiene la mayor influencia sobre Overall, reflejando la dependencia de habilidades específicas.
+
+Estas relaciones confirman que Potential, Special, WageUSD y Age² son las variables más relevantes para el modelado predictivo del rendimiento.
+
+**Análisis multivariado**
+
+Distribución por rol:
+- Defensas: 5 699  
+- Mediocampos: 7 002  
+- Atacantes: 3 414  
+- Arqueros: 2 015  
+
+Correlaciones clave:
+| Variables | Correlación | Interpretación |
+|------------|--------------|----------------|
+| Overall - Special | **0.80** | Relación directa entre habilidad técnica y rendimiento |
+| Overall - ValueUSD | **0.79** | Valor de mercado aumenta con el rendimiento |
+| Overall - WageUSD | **0.72** | Sueldo refleja desempeño |
+| Overall - Potential | **0.65** | Potencial y desempeño casi lineales |
+| Altura/Peso | ~0.10 | Influencia marginal |
+
+
+- Los jugadores entre **20–30 años** alcanzan el mejor rendimiento promedio.
+- `Potential` y `Special` son los mejores predictores del desempeño.  
+- El valor de mercado crece exponencialmente hasta un **punto de saturación** alrededor de `Overall = 80`.  
+- El **rol** no influye significativamente en la calificación general (p > 0.05).
+
+
+---
 ### Importancia de las variables
 
 ![Importancia de variables](Gráficas/importanciaV.PNG)
