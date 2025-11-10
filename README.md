@@ -314,6 +314,13 @@ Esto coincide con el comportamiento real en el fútbol: los jugadores jóvenes s
 ```
 Análisis de sesgo
 ```
+
+Si desea ver una prueba del modelo en el notebook de entrenamiento de click en:
+[Ver código relacionado en la sección *“Guardar y probar Modelos”* — copia lo de abajo y búscalo usando **Ctrl+F** en el notebook de entrenamiento.](https://github.com/stikrobinson/Analisis_Rendimiento_Jugadores/blob/main/notebooks/01_EDA_Entrenamiento.ipynb)
+```
+Guardar y probar Modelos
+```
+
 ---
 
 **Resumen del entrenamiento:**
@@ -325,7 +332,7 @@ Análisis de sesgo
 ---
 
 ## 4. Demostración e Inferencias (Uso de Pipeline)
-El [**pipeline final**](https://github.com/stikrobinson/Analisis_Rendimiento_Jugadores/blob/main/notebooks/02_pipeline_finalGrupo4.ipynb) contiene **todo el proceso automático de predicción del rendimiento (Overall)**, que se uso en el notebook de entrenamiento, de los jugadores FIFA-19. Integra desde la limpieza de datos hasta la predicción final del modelo optimizado (Random Forest Tuned).
+El [**pipeline final**](https://github.com/stikrobinson/Analisis_Rendimiento_Jugadores/blob/main/notebooks/02_pipeline_finalGrupo4.ipynb) es un notebook que contiene **todo el proceso automático de predicción del rendimiento (Overall)**, que se uso en el notebook de entrenamiento, de los jugadores FIFA-19. Integra desde la limpieza de datos hasta la predicción final del modelo optimizado (Random Forest Tuned).
 
 Incluye:
 - Limpieza y conversión de datos (altura, peso, salario, etc.).
