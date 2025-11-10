@@ -3,6 +3,29 @@ Aplicación de técnicas de análisis de datos para evaluar su rendimiento de ju
 
 ---
 
+## Contenido
+
+- [1️. Preparación y limpieza de los datos](#1-preparación-y-limpieza-de-los-datos)
+- [2️. Análisis exploratorio (EDA)](#2-análisis-exploratorio-eda)
+  - [Análisis univarido](#análisis-univarido)
+  - [Análisis bivariados](#análisis-bivariados)
+  - [Análisis multivariado](#análisis-multivariado)
+- [3️. Entrenamiento del modelo](#3-entrenamiento-del-modelo)
+  - [Importancia de las variables](#importancia-de-las-variables)
+  - [Efecto de la edad y la edad²](#efecto-de-la-edad-y-la-edad²)
+  - [Comparativa de modelos](#comparativa-de-modelos)
+  - [Comparación de predicciones](#comparación-de-predicciones)
+  - [Distribución de errores o residuos](#distribución-de-errores-o-residuos)
+  - [Importancia por Rol](#importancia-por-rol)
+  - [Interpretabilidad con SHAP](#interpretabilidad-con-shap)
+  - [Sesgo por edad](#sesgo-por-edad)
+- [4️. Demostración e inferencias (Uso de Pipeline)](#4-demostración-e-inferencias-uso-de-pipeline)
+- [5️. Hallazgos Generales](#5-hallazgos-generales)
+- [6️. Conclusiones](#6-conclusiones)
+- [7️. Recomendaciones](#7-recomendaciones)
+
+---
+
 ## 1. Preparación y limpieza de los datos
 **Fuente: Dataset oficial FIFA-19 (Kaggle, versión 2019):** https://www.kaggle.com/datasets/javagarm/fifa-19-complete-player-dataset
 
@@ -253,7 +276,7 @@ Antes de ejecutar el pipeline, instala las librerías necesarias usando el archi
 pip install -r requirements.txt
 ```
 
-###Cargar el pipeline entrenado
+### Cargar el pipeline entrenado
 
 El modelo final fue empaquetado como un pipeline completo en models/pipeline_fifa.pkl.
 
