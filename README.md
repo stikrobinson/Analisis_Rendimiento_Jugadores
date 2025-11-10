@@ -1,5 +1,5 @@
 # Analisis Rendimiento de Jugadores FIFA-19
-Aplicación de técnicas de análisis de datos para evaluar su rendimiento de jugadores de fútbol. Incluye limpieza de datos, exploración del dataset y la creación de un modelo predictivo utilizando técnicas de machine learning. El objetivo será predecir métricas de rendimiento (Overall) de los jugadores a partir de variables técnicas, físicas y económicas. Para obtener las gráficas dadas se uso el [**notebook de entrenamiento**](https://github.com/stikrobinson/Analisis_Rendimiento_Jugadores/blob/main/notebooks/01_EDA_Entrenamiento.ipynb)
+Aplicación de técnicas de análisis de datos para evaluar su rendimiento de jugadores de fútbol. Incluye limpieza de datos, exploración del dataset y la creación de un modelo predictivo utilizando técnicas de machine learning. El objetivo será predecir métricas de rendimiento (Overall) de los jugadores a partir de variables técnicas, físicas y económicas. Para obtener las gráficas dadas se uso el [**notebook de entrenamiento**](https://github.com/stikrobinson/Analisis_Rendimiento_Jugadores/blob/main/notebooks/01_EDA_Entrenamiento.ipynb). Se recomienda abrir el notebook en otra pestaña para su visualización.
 
 ---
 
@@ -43,7 +43,7 @@ Procesos aplicados:
   
 - Eliminación de registros nulos en atributos críticos (Overall, Potential, ValueUSD, WageUSD).
 
-[Ver sección *“Limpieza inicial”* — búscala usando **Ctrl+F** en el notebook de entrenamiento.](https://github.com/stikrobinson/Analisis_Rendimiento_Jugadores/blob/main/notebooks/01_EDA_Entrenamiento.ipynb)
+[Ver código relacionado en la sección *“Limpieza inicial”* — copia lo de abajo y búscala usando **Ctrl+F** en el notebook de entrenamiento.](https://github.com/stikrobinson/Analisis_Rendimiento_Jugadores/blob/main/notebooks/01_EDA_Entrenamiento.ipynb)
 ```
 Limpieza inicial
 ```
@@ -73,7 +73,11 @@ Se examinaron las distribuciones de las principales variables (Overall, Special,
 - En los arqueros, las tres distribuciones cambian notablemente: El Overall es más irregular y menos centrado, el Special es más concentrado (entre 1000 y 1200), el Log(ValueUSD) está sesgado a la izquierda: la mayoría de los porteros tienen bajo valor de mercado, con pocos casos extremos.
 
 Los jugadores de campo siguen patrones similares de rendimiento y valor, mientras que los arqueros conforman un grupo estadísticamente distinto, lo que valida su análisis y modelado independiente.
-[Ver sección *“Análisis de cada variable”* — búscala usando **Ctrl+F** en el notebook de entrenamiento.](https://github.com/stikrobinson/Analisis_Rendimiento_Jugadores/blob/main/notebooks/01_EDA_Entrenamiento.ipynb)
+
+[Ver código relacionado en la sección *“Análisis de cada variable”* — copia lo de abajo y búscalo usando **Ctrl+F** en el notebook de entrenamiento.](https://github.com/stikrobinson/Analisis_Rendimiento_Jugadores/blob/main/notebooks/01_EDA_Entrenamiento.ipynb)
+```
+Análisis de cada variable
+```
 
 
 ### Análisis multivariado
@@ -104,8 +108,10 @@ En base a la matriz se obtiene:
 - El valor de mercado crece exponencialmente hasta un **punto de saturación** alrededor de `Overall = 80`.  
 - El **rol** no influye significativamente en la calificación general (p > 0.05).
 
-[Ver sección *“Análisis multivariado”* — búscala usando **Ctrl+F** en el notebook de entrenamiento.](https://github.com/stikrobinson/Analisis_Rendimiento_Jugadores/blob/main/notebooks/01_EDA_Entrenamiento.ipynb)
-
+[Ver código relacionado en la sección *“Análisis multivariado”* — copia lo de abajo y búscalo usando **Ctrl+F** en el notebook de entrenamiento.](https://github.com/stikrobinson/Analisis_Rendimiento_Jugadores/blob/main/notebooks/01_EDA_Entrenamiento.ipynb)
+```
+Análisis multivariado
+```
 
 ### Análisis bivariado
 
@@ -125,7 +131,10 @@ En base a la matriz se obtiene:
 
 Estas relaciones confirman que Potential, Special, WageUSD y Age² son las variables más relevantes para el modelado predictivo del rendimiento.
 
-[Ver sección *“Análisis Bivariado”* — búscala usando **Ctrl+F** en el notebook de entrenamiento.](https://github.com/stikrobinson/Analisis_Rendimiento_Jugadores/blob/main/notebooks/01_EDA_Entrenamiento.ipynb)
+[Ver código relacionado en la sección *“Análisis Bivariado”* — copia lo de abajo y búscalo usando **Ctrl+F** en el notebook de entrenamiento.](https://github.com/stikrobinson/Analisis_Rendimiento_Jugadores/blob/main/notebooks/01_EDA_Entrenamiento.ipynb)
+```
+Análisis Bivariado
+```
 
 
 ---
@@ -152,8 +161,10 @@ Esta gráfica muestra qué características fueron más influyentes en la predic
 
 En conjunto, el modelo aprendió una lógica **coherente con la realidad del fútbol profesional**: los jugadores con más experiencia, mejor salario y mayor potencial suelen tener un rendimiento más alto.
 
-[Ver sección *“Selección de features”* — búscala usando **Ctrl+F** en el notebook de entrenamiento.](https://github.com/stikrobinson/Analisis_Rendimiento_Jugadores/blob/main/notebooks/01_EDA_Entrenamiento.ipynb)
-
+[Ver código relacionado en la sección *“Selección de features”* — copia lo de abajo y búscalo usando **Ctrl+F** en el notebook de entrenamiento.](https://github.com/stikrobinson/Analisis_Rendimiento_Jugadores/blob/main/notebooks/01_EDA_Entrenamiento.ipynb)
+```
+Selección de features
+```
 
 ---
 
@@ -168,7 +179,10 @@ Aunque mantenga una curva descendente su relación con el rendimiento no present
 Esto refleja que los jugadores jóvenes están en crecimiento, los adultos alcanzan su pico, y los veteranos bajan su nivel.  
 Por eso fue necesario incluir **`Age²` (edad al cuadrado)**: permite al modelo entender **una relación curvada**, más realista que una línea recta.
 
-[Ver sección *“Entrenamiento del módelo base”* — búscala usando **Ctrl+F** en el notebook de entrenamiento.](https://github.com/stikrobinson/Analisis_Rendimiento_Jugadores/blob/main/notebooks/01_EDA_Entrenamiento.ipynb)
+[Ver código relacionado en la sección *“Entrenamiento del módelo base”* — copia lo de abajo y búscalo usando **Ctrl+F** en el notebook de entrenamiento.](https://github.com/stikrobinson/Analisis_Rendimiento_Jugadores/blob/main/notebooks/01_EDA_Entrenamiento.ipynb)
+```
+Entrenamiento del módelo base
+```
 
 ---
 
@@ -189,11 +203,19 @@ Se compararon tres enfoques:
 
 El modelo **Random Forest Tuned** es el más preciso, reduciendo los errores y explicando el **96% del rendimiento real** de los jugadores.
 
-[Ver sección *“Entrenamiento de módelo complejo”* — búscala usando **Ctrl+F** en el notebook de entrenamiento.](https://github.com/stikrobinson/Analisis_Rendimiento_Jugadores/blob/main/notebooks/01_EDA_Entrenamiento.ipynb)
+[Ver código relacionado en la sección *“Entrenamiento de módelo complejo”* — copia lo de abajo y búscalo usando **Ctrl+F** en el notebook de entrenamiento.](https://github.com/stikrobinson/Analisis_Rendimiento_Jugadores/blob/main/notebooks/01_EDA_Entrenamiento.ipynb)
+[Ver código relacionado en la sección *“Hypertuning con Optuna (Random Forest) Fields”* — copia lo de abajo y búscalo usando **Ctrl+F** en el notebook de entrenamiento.](https://github.com/stikrobinson/Analisis_Rendimiento_Jugadores/blob/main/notebooks/01_EDA_Entrenamiento.ipynb)
+[Ver código relacionado en la sección *“Comparativa de modelos”* — copia lo de abajo y búscalo usando **Ctrl+F** en el notebook de entrenamiento.](https://github.com/stikrobinson/Analisis_Rendimiento_Jugadores/blob/main/notebooks/01_EDA_Entrenamiento.ipynb)
+```
+Entrenamiento de módelo complejo
+```
+```
+Hypertuning con Optuna (Random Forest) Fields
+```
 
-[Ver sección *“Hypertuning con Optuna (Random Forest) Fields”* — búscala usando **Ctrl+F** en el notebook de entrenamiento.](https://github.com/stikrobinson/Analisis_Rendimiento_Jugadores/blob/main/notebooks/01_EDA_Entrenamiento.ipynb)
-
-[Ver sección *“Comparativa de modelose”* — búscala usando **Ctrl+F** en el notebook de entrenamiento.](https://github.com/stikrobinson/Analisis_Rendimiento_Jugadores/blob/main/notebooks/01_EDA_Entrenamiento.ipynb)
+```
+Comparativa de modelos
+```
 
 ---
 
@@ -210,7 +232,10 @@ Cada punto representa un jugador:
 Los puntos verdes (**Random Forest Tuned**) están más cerca de la línea roja que los azules (**Lineal**), mostrando que el modelo optimizado predice con mayor precisión.
 
 
-[Ver sección *“Hypertuning con Optuna (Random Forest) GK”* — búscala usando **Ctrl+F** en el notebook de entrenamiento.](https://github.com/stikrobinson/Analisis_Rendimiento_Jugadores/blob/main/notebooks/01_EDA_Entrenamiento.ipynb)
+[Ver código relacionado en la sección *“Hypertuning con Optuna (Random Forest) GK”* — copia lo de abajo y búscalo usando **Ctrl+F** en el notebook de entrenamiento.](https://github.com/stikrobinson/Analisis_Rendimiento_Jugadores/blob/main/notebooks/01_EDA_Entrenamiento.ipynb)
+```
+Hypertuning con Optuna (Random Forest) GK
+```
 
 ---
 
@@ -225,8 +250,10 @@ Su forma de campana indica que los errores son pequeños y aleatorios, sin tende
 
 Esto demuestra que el modelo es **estable, confiable y sin sesgos evidentes**.
 
-[Ver sección *“Análisis de residuos”* — búscala usando **Ctrl+F** en el notebook de entrenamiento.](https://github.com/stikrobinson/Analisis_Rendimiento_Jugadores/blob/main/notebooks/01_EDA_Entrenamiento.ipynb)
-
+[Ver código relacionado en la sección *“Análisis de residuos”* — copia lo de abajo y búscalo usando **Ctrl+F** en el notebook de entrenamiento.](https://github.com/stikrobinson/Analisis_Rendimiento_Jugadores/blob/main/notebooks/01_EDA_Entrenamiento.ipynb)
+```
+Análisis de residuos
+```
 ---
 
 ### Importancia por Rol
@@ -248,7 +275,11 @@ Por motivos de investigación se entrenaron modelos específicos para cada tipo 
 
 Cada modelo reflejó correctamente las **habilidades específicas de cada posición** dentro del campo.
 
-[Ver sección *“Modelos por roles especificos”* — búscala usando **Ctrl+F** en el notebook de entrenamiento.](https://github.com/stikrobinson/Analisis_Rendimiento_Jugadores/blob/main/notebooks/01_EDA_Entrenamiento.ipynb)
+[Ver código relacionado en la sección *“Modelos por roles especificoss”* — copia lo de abajo y búscalo usando **Ctrl+F** en el notebook de entrenamiento.](https://github.com/stikrobinson/Analisis_Rendimiento_Jugadores/blob/main/notebooks/01_EDA_Entrenamiento.ipynb)
+```
+Modelos por roles especificos
+```
+
 
 ---
 
@@ -263,7 +294,10 @@ Cada punto es un jugador:
 
 Esto permite entender **cómo y por qué el modelo llega a cada resultado**, haciendo el modelo **transparente y explicable**.
 
-[Ver sección *“Interpretabilidad con SHAP”* — búscala usando **Ctrl+F** en el notebook de entrenamiento.](https://github.com/stikrobinson/Analisis_Rendimiento_Jugadores/blob/main/notebooks/01_EDA_Entrenamiento.ipynb)
+[Ver código relacionado en la sección *“Interpretabilidad con SHAP”* — copia lo de abajo y búscalo usando **Ctrl+F** en el notebook de entrenamiento.](https://github.com/stikrobinson/Analisis_Rendimiento_Jugadores/blob/main/notebooks/01_EDA_Entrenamiento.ipynb)
+```
+Interpretabilidad con SHAP
+```
 ---
 
 ### Sesgo por edad
@@ -275,8 +309,10 @@ En cambio, con jugadores adultos (25–35 años), el modelo es **más preciso y 
 
 Esto coincide con el comportamiento real en el fútbol: los jugadores jóvenes son más impredecibles, mientras que los experimentados tienen un rendimiento más estable.
 
-[Ver sección *“Análisis de sesgos”* — búscala usando **Ctrl+F** en el notebook de entrenamiento.](https://github.com/stikrobinson/Analisis_Rendimiento_Jugadores/blob/main/notebooks/01_EDA_Entrenamiento.ipynb)
-
+[Ver código relacionado en la sección *“Análisis de sesgo”* — copia lo de abajo y búscalo usando **Ctrl+F** en el notebook de entrenamiento.](https://github.com/stikrobinson/Analisis_Rendimiento_Jugadores/blob/main/notebooks/01_EDA_Entrenamiento.ipynb)
+```
+Análisis de sesgo
+```
 ---
 
 **Resumen del entrenamiento:**
