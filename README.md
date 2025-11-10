@@ -234,37 +234,8 @@ Esto coincide con el comportamiento real en el fútbol: los jugadores jóvenes s
 - El modelo es explicable, confiable y generaliza bien para distintos tipos de jugadores.
 
 ---
-
-## 4. Hallazgos
-
-- Los jugadores tienen su rendimiento máximo hasta los 30 años aproximadamente. Luego, el rendimiento tiende a descender gradualmente, reflejando el desgaste físico acumulado.
-- Existe una correlación positiva muy fuerte entre Potential y Overall, lo que demuestra que los jugadores con mayor potencial tienden a alcanzar también niveles altos de rendimiento actual.
-- Aunque las medianas de rendimiento (Overall) son similares entre defensas, mediocampistas y atacantes, se encontró que los jugadores ofensivos (atacantes y medios) poseen valores de mercado y salarios ligeramente más altos.
-- El valor económico (ValueUSD) aumenta de forma exponencial con el rendimiento, pero presenta un punto de saturación alrededor de un Overall aproximadamente de 80, lo que indica un “techo” en la valoración de jugadores de élite.
-
----
-
-## 5. Conclusiones
-
-- El modelo Random Forest identificó que las variables más determinantes para predecir el "Overall" son Log_WageUSD (Salario) que explica más del 53% de la influencia, Special (habilidades técnicas y físicas combinadas) con 18.2% de influencia y potential (Potencial) con 15.6% de influencia. Estas tres variables juntas representan más del 85% de la importancia total del modelo.
-- El modelo Random Forest demostró una mejor capacidad de generalización que la regresión lineal para el rendimiento de los jugadores.
-- Es posible predecir el rendimiento de un jugador con alta precisión con un 96.2% de la variabilidad explicada utilizando modelos de machine learning.
-- El rendimiento de un jugador está más influido por sus atributos técnicos (Special, Potential) y económicos (salario, valor) que por factores físicos o posicionales.
-
----
-
-## 6. Recomendaciones
-
-- Para futuras predicciones del "Overall", es una buena opción utilizar el modelo Random Forest Tuned, ya que demostró un rendimiento superior, un coeficiente de determinación más alto (0.961) y un error absoluto medio más bajo (0.879) en comparación con el modelo lineal.
-- Dado que variables como WeightKG (0.9%), HeightCM (0.6%), WorkRate_Att (0.19%) y WorkRate_Def (0.19%) tienen una influencia prácticamente nula, se recomienda eliminarlas del modelo. Esto puede simplificar el modelo sin afectar significativamente su precisión.
-- Probar otros algoritmos como XGBoost, dado que suelen ser más precisos que el Random Forest y ofrecen mejor rendimiento y velocidad, especialmente con datos grandes.
-- Agregar información más reciente sobre jugadores de la FIFA, para hacer el modelo más general donde se incluyan variables nuevas que puedan influir en el rendimiento como minutos jugados, lesiones o goles.
-
----
-
-## 7. Demostración e Inferencias (Uso del Pipeline)
-
-Este pipeline contiene **todo el proceso automático de predicción del rendimiento (Overall)** de los jugadores FIFA-19.  
+## 4. Demostración e Inferencias (Uso de Pipeline)
+El [**pipeline**]([https://github.com/CrisPih/PulseraApp](https://github.com/stikrobinson/Analisis_Rendimiento_Jugadores/blob/main/notebooks/02_pipeline_finalGrupo4.ipynb)) contiene **todo el proceso automático de predicción del rendimiento (Overall)** de los jugadores FIFA-19.  
 Integra desde la limpieza de datos hasta la predicción final del modelo optimizado (Random Forest Tuned).
 
 Incluye:
@@ -285,33 +256,78 @@ pip install -r requirements.txt
 ###Cargar el pipeline entrenado
 
 El modelo final fue empaquetado como un pipeline completo en models/pipeline_fifa.pkl.
-Para usarlo en nuevas predicciones:
+
+Cargar el pipeline entrenado:
 
 ```python
 import joblib
-import pandas as pd
 
-# Cargar el pipeline
+# Cargar el modelo completo
 pipe = joblib.load("models/pipeline_fifa.pkl")
-print("Pipeline cargado correctamente")
 
-# Ejemplo de jugador nuevo
-nuevo_jugador = {
-    "Role": "Midfielder",
-    "Age": 25,
-    "Potential": 85,
-    "Special": 1900,
-    "HeightCM": 178,
-    "WeightKG": 72,
-    "WageUSD": 73000,
-    "WorkRate_Att": 2,
-    "WorkRate_Def": 2
-}
-
-# Predicción
-pred = pipe.predict(pd.DataFrame([nuevo_jugador]))
-print(f"Predicción de Overall: {pred[0]:.2f}")
+print("✅ Pipeline cargado correctamente")
 ```
+
 El pipeline devuelve una estimación del rendimiento general (Overall) con base en las variables ingresadas.
 Además, selecciona automáticamente el submodelo correspondiente (jugadores de campo o arqueros).
 
+### Demostración del pipeline para predicción
+
+```
+pipe = joblib.load("pipeline_fifa.pkl")
+
+# Ejemplo de uso con nuevas filas (directamente del CSV original)
+nuevos_jugadores = df_raw.sample(3)
+predicciones = pipe.predict(nuevos_jugadores)
+pd.DataFrame({
+    'Name': nuevos_jugadores['Name'],
+    'Predicción Overall': predicciones
+})
+
+```
+
+
+Al ejecutar el código previamente mostrado se obtiene:
+
+![Cuadro pipeline](Gráficas/cuadroPipeline.png)
+
+En base al cuadro obtenido, podemos observar que N. Powell presenta la mayor predicción de rendimiento general (Overall = 72.52), seguido por F. Al Muwallad (71.89) y A. Maher (71.13).
+Esto indica que, según el modelo entrenado, Powell posee un conjunto de atributos técnicos, físicos y económicos ligeramente superiores a los de los otros dos jugadores, lo que se traduce en un desempeño global más alto.
+
+El modelo Random Forest Tuned logra distinguir diferencias sutiles en los perfiles de los jugadores y asigna calificaciones acordes con sus características individuales.
+Los resultados mantienen coherencia con las tendencias identificadas durante el análisis exploratorio:
+
+- Los jugadores con mayor potencial (Potential) y habilidades técnicas agregadas (Special) tienden a alcanzar valores más altos de rendimiento.
+
+- Factores económicos como el salario (Log_WageUSD) también influyen significativamente en el Overall final.
+
+- Las predicciones se encuentran dentro del rango esperado (70–75), lo que demuestra que el modelo es consistente y realista.
+
+En conclusión, el pipeline implementado predice de forma precisa y coherente el nivel de rendimiento de los jugadores, reflejando correctamente la jerarquía de desempeño estimada por sus características individuales.
+
+
+---
+## 5. Hallazgos Generales
+
+- Los jugadores tienen su rendimiento máximo hasta los 30 años aproximadamente. Luego, el rendimiento tiende a descender gradualmente, reflejando el desgaste físico acumulado.
+- Existe una correlación positiva muy fuerte entre Potential y Overall, lo que demuestra que los jugadores con mayor potencial tienden a alcanzar también niveles altos de rendimiento actual.
+- Aunque las medianas de rendimiento (Overall) son similares entre defensas, mediocampistas y atacantes, se encontró que los jugadores ofensivos (atacantes y medios) poseen valores de mercado y salarios ligeramente más altos.
+- El valor económico (ValueUSD) aumenta de forma exponencial con el rendimiento, pero presenta un punto de saturación alrededor de un Overall aproximadamente de 80, lo que indica un “techo” en la valoración de jugadores de élite.
+
+---
+
+## 6. Conclusiones
+
+- El modelo Random Forest identificó que las variables más determinantes para predecir el "Overall" son Log_WageUSD (Salario) que explica más del 53% de la influencia, Special (habilidades técnicas y físicas combinadas) con 18.2% de influencia y potential (Potencial) con 15.6% de influencia. Estas tres variables juntas representan más del 85% de la importancia total del modelo.
+- El modelo Random Forest demostró una mejor capacidad de generalización que la regresión lineal para el rendimiento de los jugadores.
+- Es posible predecir el rendimiento de un jugador con alta precisión con un 96.2% de la variabilidad explicada utilizando modelos de machine learning.
+- El rendimiento de un jugador está más influido por sus atributos técnicos (Special, Potential) y económicos (salario, valor) que por factores físicos o posicionales.
+
+---
+
+## 7. Recomendaciones
+
+- Para futuras predicciones del "Overall", es una buena opción utilizar el modelo Random Forest Tuned, ya que demostró un rendimiento superior, un coeficiente de determinación más alto (0.961) y un error absoluto medio más bajo (0.879) en comparación con el modelo lineal.
+- Dado que variables como WeightKG (0.9%), HeightCM (0.6%), WorkRate_Att (0.19%) y WorkRate_Def (0.19%) tienen una influencia prácticamente nula, se recomienda eliminarlas del modelo. Esto puede simplificar el modelo sin afectar significativamente su precisión.
+- Probar otros algoritmos como XGBoost, dado que suelen ser más precisos que el Random Forest y ofrecen mejor rendimiento y velocidad, especialmente con datos grandes.
+- Agregar información más reciente sobre jugadores de la FIFA, para hacer el modelo más general donde se incluyan variables nuevas que puedan influir en el rendimiento como minutos jugados, lesiones o goles.
