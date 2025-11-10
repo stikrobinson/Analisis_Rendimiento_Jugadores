@@ -1,5 +1,5 @@
 # Analisis Rendimiento de Jugadores FIFA-19
-Aplicación de técnicas de análisis de datos para evaluar su rendimiento de jugadores de fútbol. Incluye limpieza de datos, exploración del dataset y la creación de un modelo predictivo utilizando técnicas de machine learning. El objetivo será predecir métricas de rendimiento (Overall) de los jugadores a partir de variables técnicas, físicas y económicas. Para obtener las gráficas dadas se uso el [**notebook de entrenamiento**](https://github.com/stikrobinson/Analisis_Rendimiento_Jugadores/blob/main/notebooks/01_EDA_Entrenamiento.ipynb). Se recomienda abrir el notebook en otra pestaña para su visualización.
+Aplicación de técnicas de análisis de datos para evaluar su rendimiento de jugadores de fútbol. Incluye limpieza de datos, exploración del dataset y la creación de un modelo predictivo utilizando técnicas de machine learning. El objetivo será predecir métricas de rendimiento (Overall) de los jugadores a partir de variables técnicas, físicas y económicas. Para obtener las gráficas dadas se usó el [**notebook de entrenamiento**](https://github.com/stikrobinson/Analisis_Rendimiento_Jugadores/blob/main/notebooks/01_EDA_Entrenamiento.ipynb). Se recomienda abrir el notebook en otra pestaña para su visualización.
 
 ---
 
@@ -433,4 +433,5 @@ En conclusión, el pipeline implementado predice de forma precisa y coherente el
 
 - [Notebook de Entrenamiento (Google Colab)](https://colab.research.google.com/drive/1CV4A89s6n06vLtWyKsJjBsiSr05DyIii?usp=drive_link)  
 - [Notebook del Pipeline (Google Colab)](https://colab.research.google.com/drive/1ABM014XjRE1EhuvxFntD0p7XkrRxnIUM?usp=drive_link)  
-- [Carpeta del Proyecto en Google Drive](https://drive.google.com/drive/folders/1kMXumeS8drUEzXPOqqA-7oD0u9KlBEjI?usp=drive_link)
+- [Carpeta del Proyecto en Google Drive creado por el grupo](https://drive.google.com/drive/folders/1kMXumeS8drUEzXPOqqA-7oD0u9KlBEjI?usp=drive_link)
+- [Carpeta del Proyecto en Google Drive de CIAP](https://drive.google.com/drive/folders/1dVT5G9Yg4nLEMVhBxX5_v2F4Sc831nfB?usp=drive_link)
