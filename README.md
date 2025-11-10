@@ -44,7 +44,9 @@ Procesos aplicados:
 - Eliminación de registros nulos en atributos críticos (Overall, Potential, ValueUSD, WageUSD).
 
 [Ver sección *“Limpieza inicial”* — búscala usando **Ctrl+F** en el notebook de entrenamiento.](https://github.com/stikrobinson/Analisis_Rendimiento_Jugadores/blob/main/notebooks/01_EDA_Entrenamiento.ipynb)
-
+```
+Limpieza inicial
+```
 
 ---
 ## 2. Análisis exploratorio (EDA)
