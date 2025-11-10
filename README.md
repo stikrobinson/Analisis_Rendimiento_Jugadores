@@ -8,7 +8,7 @@ Aplicación de técnicas de análisis de datos para evaluar su rendimiento de ju
 - [1️. Preparación y limpieza de los datos](#1-preparación-y-limpieza-de-los-datos)
 - [2️. Análisis exploratorio (EDA)](#2-análisis-exploratorio-eda)
   - [Análisis univarido](#análisis-univarido)
-  - [Análisis bivariados](#análisis-bivariados)
+  - [Análisis bivariado](#análisis-bivariado)
   - [Análisis multivariado](#análisis-multivariado)
 - [3️. Entrenamiento del modelo](#3-entrenamiento-del-modelo)
   - [Importancia de las variables](#importancia-de-las-variables)
@@ -23,6 +23,7 @@ Aplicación de técnicas de análisis de datos para evaluar su rendimiento de ju
 - [5️. Hallazgos Generales](#5-hallazgos-generales)
 - [6️. Conclusiones](#6-conclusiones)
 - [7️. Recomendaciones](#7-recomendaciones)
+- [8- Enlaces a Notebooks y Drive](#8-Enlaces-a-Notebooks-y-Drive)
 
 ---
 
@@ -42,12 +43,14 @@ Procesos aplicados:
   
 - Eliminación de registros nulos en atributos críticos (Overall, Potential, ValueUSD, WageUSD).
 
+[Ver sección *“Limpieza inicial”* — búscala usando **Ctrl+F** en el notebook de entrenamiento.](https://github.com/stikrobinson/Analisis_Rendimiento_Jugadores/blob/main/notebooks/01_EDA_Entrenamiento.ipynb)
+
+
 ---
 ## 2. Análisis exploratorio (EDA)
 ### Análisis univarido
 
 Se examinaron las distribuciones de las principales variables (Overall, Special, Log(ValueUSD)) por rol: atacantes, mediocampistas, defensas y arqueros.
-
 
 **Gráficas atacantes:**
 ![Jugadores Atacantes](Gráficas/univarialAtacantes.png)
@@ -68,27 +71,7 @@ Se examinaron las distribuciones de las principales variables (Overall, Special,
 - En los arqueros, las tres distribuciones cambian notablemente: El Overall es más irregular y menos centrado, el Special es más concentrado (entre 1000 y 1200), el Log(ValueUSD) está sesgado a la izquierda: la mayoría de los porteros tienen bajo valor de mercado, con pocos casos extremos.
 
 Los jugadores de campo siguen patrones similares de rendimiento y valor, mientras que los arqueros conforman un grupo estadísticamente distinto, lo que valida su análisis y modelado independiente.
-
-
-### Análisis bivariados
-
-![Bivariado campos](Gráficas/bivarialCampo.png)
-
-- Potential vs Overall: relación casi lineal y positiva → los jugadores con mayor potencial tienden a tener un mejor rendimiento actual.
-
-- Special vs Overall: correlación muy alta → las habilidades técnicas agregadas son un fuerte indicador del desempeño.
-
-- Age vs Overall: relación no lineal → el rendimiento crece hasta los 28–30 años y luego declina, justificando la variable Age².
-
-- Log(ValueUSD) vs Overall: crecimiento logarítmico → el valor de mercado se estabiliza en jugadores élite, lo que muestra una saturación económica natural.
-
-  
-![Bivariado campos](Gráficas/gkdivingArquero.png)
-
-- En arqueros, la variable GKDiving tiene la mayor influencia sobre Overall, reflejando la dependencia de habilidades específicas.
-
-Estas relaciones confirman que Potential, Special, WageUSD y Age² son las variables más relevantes para el modelado predictivo del rendimiento.
-
+[Ver sección *“Análisis de cada variable”* — búscala usando **Ctrl+F** en el notebook de entrenamiento.](https://github.com/stikrobinson/Analisis_Rendimiento_Jugadores/blob/main/notebooks/01_EDA_Entrenamiento.ipynb)
 
 
 ### Análisis multivariado
@@ -119,6 +102,29 @@ En base a la matriz se obtiene:
 - El valor de mercado crece exponencialmente hasta un **punto de saturación** alrededor de `Overall = 80`.  
 - El **rol** no influye significativamente en la calificación general (p > 0.05).
 
+[Ver sección *“Análisis multivariado”* — búscala usando **Ctrl+F** en el notebook de entrenamiento.](https://github.com/stikrobinson/Analisis_Rendimiento_Jugadores/blob/main/notebooks/01_EDA_Entrenamiento.ipynb)
+
+
+### Análisis bivariado
+
+![Bivariado campos](Gráficas/bivarialCampo.png)
+
+- Potential vs Overall: relación casi lineal y positiva → los jugadores con mayor potencial tienden a tener un mejor rendimiento actual.
+
+- Special vs Overall: correlación muy alta → las habilidades técnicas agregadas son un fuerte indicador del desempeño.
+
+- Age vs Overall: relación no lineal → el rendimiento crece hasta los 28–30 años y luego declina, justificando la variable Age².
+
+- Log(ValueUSD) vs Overall: crecimiento logarítmico → el valor de mercado se estabiliza en jugadores élite, lo que muestra una saturación económica natural.
+  
+![Bivariado campos](Gráficas/gkdivingArquero.png)
+
+- En arqueros, la variable GKDiving tiene la mayor influencia sobre Overall, reflejando la dependencia de habilidades específicas.
+
+Estas relaciones confirman que Potential, Special, WageUSD y Age² son las variables más relevantes para el modelado predictivo del rendimiento.
+
+[Ver sección *“Análisis Bivariado”* — búscala usando **Ctrl+F** en el notebook de entrenamiento.](https://github.com/stikrobinson/Analisis_Rendimiento_Jugadores/blob/main/notebooks/01_EDA_Entrenamiento.ipynb)
+
 
 ---
 
@@ -144,6 +150,9 @@ Esta gráfica muestra qué características fueron más influyentes en la predic
 
 En conjunto, el modelo aprendió una lógica **coherente con la realidad del fútbol profesional**: los jugadores con más experiencia, mejor salario y mayor potencial suelen tener un rendimiento más alto.
 
+[Ver sección *“Selección de features”* — búscala usando **Ctrl+F** en el notebook de entrenamiento.](https://github.com/stikrobinson/Analisis_Rendimiento_Jugadores/blob/main/notebooks/01_EDA_Entrenamiento.ipynb)
+
+
 ---
 
 ### Efecto de la edad y la edad²
@@ -151,11 +160,13 @@ En conjunto, el modelo aprendió una lógica **coherente con la realidad del fú
 ![Efecto de la edad](Gráficas/edad.PNG)
 ![Relación entre la edad y el rendimiento](Gráficas/disperEdad.PNG)
 
-El gráfico muestra cómo cambia el rendimiento con la edad.  
+Mediante el modelo de regresión lineal el gráfico muestra cómo cambia el rendimiento con la edad.  
 Aunque mantenga una curva descendente su relación con el rendimiento no presenta linealidad, ya que la edad es un factor que refleza madurez de juego en conjunto con el descenso en cualidades físicas.  
 
 Esto refleja que los jugadores jóvenes están en crecimiento, los adultos alcanzan su pico, y los veteranos bajan su nivel.  
 Por eso fue necesario incluir **`Age²` (edad al cuadrado)**: permite al modelo entender **una relación curvada**, más realista que una línea recta.
+
+[Ver sección *“Entrenamiento del módelo base”* — búscala usando **Ctrl+F** en el notebook de entrenamiento.](https://github.com/stikrobinson/Analisis_Rendimiento_Jugadores/blob/main/notebooks/01_EDA_Entrenamiento.ipynb)
 
 ---
 
@@ -169,12 +180,18 @@ Se compararon tres enfoques:
 |--------|----------------|-------------------|------|
 | **Random Forest Tuned** | **0.962** | **0.872** | **1.331** |
 | Random Forest Base | 0.957 | 0.910 | 1.470 |
-| Lineal | 0.951 | 1.123 | 1.480 |
+| Regresion Lineal | 0.951 | 1.123 | 1.480 |
 
 - Cuanto mayor es el valor de R², más cerca está la predicción de los datos reales.  
 - Cuanto menores son MAE y RMSE, menos se equivoca el modelo.
 
 El modelo **Random Forest Tuned** es el más preciso, reduciendo los errores y explicando el **96% del rendimiento real** de los jugadores.
+
+[Ver sección *“Entrenamiento de módelo complejo”* — búscala usando **Ctrl+F** en el notebook de entrenamiento.](https://github.com/stikrobinson/Analisis_Rendimiento_Jugadores/blob/main/notebooks/01_EDA_Entrenamiento.ipynb)
+
+[Ver sección *“Hypertuning con Optuna (Random Forest) Fields”* — búscala usando **Ctrl+F** en el notebook de entrenamiento.](https://github.com/stikrobinson/Analisis_Rendimiento_Jugadores/blob/main/notebooks/01_EDA_Entrenamiento.ipynb)
+
+[Ver sección *“Comparativa de modelose”* — búscala usando **Ctrl+F** en el notebook de entrenamiento.](https://github.com/stikrobinson/Analisis_Rendimiento_Jugadores/blob/main/notebooks/01_EDA_Entrenamiento.ipynb)
 
 ---
 
@@ -190,6 +207,9 @@ Cada punto representa un jugador:
 
 Los puntos verdes (**Random Forest Tuned**) están más cerca de la línea roja que los azules (**Lineal**), mostrando que el modelo optimizado predice con mayor precisión.
 
+
+[Ver sección *“Hypertuning con Optuna (Random Forest) GK”* — búscala usando **Ctrl+F** en el notebook de entrenamiento.](https://github.com/stikrobinson/Analisis_Rendimiento_Jugadores/blob/main/notebooks/01_EDA_Entrenamiento.ipynb)
+
 ---
 
 ### Distribución de errores o residuos
@@ -202,6 +222,8 @@ La mayoría de los errores se agrupan alrededor de **0**, lo que significa que *
 Su forma de campana indica que los errores son pequeños y aleatorios, sin tendencia a sobrestimar ni subestimar jugadores.
 
 Esto demuestra que el modelo es **estable, confiable y sin sesgos evidentes**.
+
+[Ver sección *“Análisis de residuos”* — búscala usando **Ctrl+F** en el notebook de entrenamiento.](https://github.com/stikrobinson/Analisis_Rendimiento_Jugadores/blob/main/notebooks/01_EDA_Entrenamiento.ipynb)
 
 ---
 
@@ -224,6 +246,8 @@ Por motivos de investigación se entrenaron modelos específicos para cada tipo 
 
 Cada modelo reflejó correctamente las **habilidades específicas de cada posición** dentro del campo.
 
+[Ver sección *“Modelos por roles especificos”* — búscala usando **Ctrl+F** en el notebook de entrenamiento.](https://github.com/stikrobinson/Analisis_Rendimiento_Jugadores/blob/main/notebooks/01_EDA_Entrenamiento.ipynb)
+
 ---
 
 ### Interpretabilidad con SHAP
@@ -237,6 +261,7 @@ Cada punto es un jugador:
 
 Esto permite entender **cómo y por qué el modelo llega a cada resultado**, haciendo el modelo **transparente y explicable**.
 
+[Ver sección *“Interpretabilidad con SHAP”* — búscala usando **Ctrl+F** en el notebook de entrenamiento.](https://github.com/stikrobinson/Analisis_Rendimiento_Jugadores/blob/main/notebooks/01_EDA_Entrenamiento.ipynb)
 ---
 
 ### Sesgo por edad
@@ -248,6 +273,8 @@ En cambio, con jugadores adultos (25–35 años), el modelo es **más preciso y 
 
 Esto coincide con el comportamiento real en el fútbol: los jugadores jóvenes son más impredecibles, mientras que los experimentados tienen un rendimiento más estable.
 
+[Ver sección *“Análisis de sesgos”* — búscala usando **Ctrl+F** en el notebook de entrenamiento.](https://github.com/stikrobinson/Analisis_Rendimiento_Jugadores/blob/main/notebooks/01_EDA_Entrenamiento.ipynb)
+
 ---
 
 **Resumen del entrenamiento:**
@@ -257,8 +284,9 @@ Esto coincide con el comportamiento real en el fútbol: los jugadores jóvenes s
 - El modelo es explicable, confiable y generaliza bien para distintos tipos de jugadores.
 
 ---
+
 ## 4. Demostración e Inferencias (Uso de Pipeline)
-El [**pipeline**](https://github.com/stikrobinson/Analisis_Rendimiento_Jugadores/blob/main/notebooks/02_pipeline_finalGrupo4.ipynb) contiene **todo el proceso automático de predicción del rendimiento (Overall)** de los jugadores FIFA-19. Integra desde la limpieza de datos hasta la predicción final del modelo optimizado (Random Forest Tuned).
+El [**pipeline**](https://github.com/stikrobinson/Analisis_Rendimiento_Jugadores/blob/main/notebooks/02_pipeline_finalGrupo4.ipynb) contiene **todo el proceso automático de predicción del rendimiento (Overall)**, que se uso en el notebook de entrenamiento, de los jugadores FIFA-19. Integra desde la limpieza de datos hasta la predicción final del modelo optimizado (Random Forest Tuned).
 
 Incluye:
 - Limpieza y conversión de datos (altura, peso, salario, etc.).
@@ -353,3 +381,10 @@ En conclusión, el pipeline implementado predice de forma precisa y coherente el
 - Dado que variables como WeightKG (0.9%), HeightCM (0.6%), WorkRate_Att (0.19%) y WorkRate_Def (0.19%) tienen una influencia prácticamente nula, se recomienda eliminarlas del modelo. Esto puede simplificar el modelo sin afectar significativamente su precisión.
 - Probar otros algoritmos como XGBoost, dado que suelen ser más precisos que el Random Forest y ofrecen mejor rendimiento y velocidad, especialmente con datos grandes.
 - Agregar información más reciente sobre jugadores de la FIFA, para hacer el modelo más general donde se incluyan variables nuevas que puedan influir en el rendimiento como minutos jugados, lesiones o goles.
+
+---
+## 8. Enlaces a Notebooks y Drive
+
+- [Notebook de Entrenamiento (Google Colab)](https://colab.research.google.com/drive/1CV4A89s6n06vLtWyKsJjBsiSr05DyIii?usp=drive_link)  
+- [Notebook del Pipeline (Google Colab)](https://colab.research.google.com/drive/1ABM014XjRE1EhuvxFntD0p7XkrRxnIUM?usp=drive_link)  
+- [Carpeta del Proyecto en Google Drive](https://drive.google.com/drive/folders/1kMXumeS8drUEzXPOqqA-7oD0u9KlBEjI?usp=drive_link)
