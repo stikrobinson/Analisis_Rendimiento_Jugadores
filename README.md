@@ -204,15 +204,16 @@ Se compararon tres enfoques:
 El modelo **Random Forest Tuned** es el más preciso, reduciendo los errores y explicando el **96% del rendimiento real** de los jugadores.
 
 [Ver código relacionado en la sección *“Entrenamiento de módelo complejo”* — copia lo de abajo y búscalo usando **Ctrl+F** en el notebook de entrenamiento.](https://github.com/stikrobinson/Analisis_Rendimiento_Jugadores/blob/main/notebooks/01_EDA_Entrenamiento.ipynb)
-[Ver código relacionado en la sección *“Hypertuning con Optuna (Random Forest) Fields”* — copia lo de abajo y búscalo usando **Ctrl+F** en el notebook de entrenamiento.](https://github.com/stikrobinson/Analisis_Rendimiento_Jugadores/blob/main/notebooks/01_EDA_Entrenamiento.ipynb)
-[Ver código relacionado en la sección *“Comparativa de modelos”* — copia lo de abajo y búscalo usando **Ctrl+F** en el notebook de entrenamiento.](https://github.com/stikrobinson/Analisis_Rendimiento_Jugadores/blob/main/notebooks/01_EDA_Entrenamiento.ipynb)
 ```
 Entrenamiento de módelo complejo
 ```
+
+[Ver código relacionado en la sección *“Hypertuning con Optuna (Random Forest) Fields”* — copia lo de abajo y búscalo usando **Ctrl+F** en el notebook de entrenamiento.](https://github.com/stikrobinson/Analisis_Rendimiento_Jugadores/blob/main/notebooks/01_EDA_Entrenamiento.ipynb)
 ```
 Hypertuning con Optuna (Random Forest) Fields
 ```
 
+[Ver código relacionado en la sección *“Comparativa de modelos”* — copia lo de abajo y búscalo usando **Ctrl+F** en el notebook de entrenamiento.](https://github.com/stikrobinson/Analisis_Rendimiento_Jugadores/blob/main/notebooks/01_EDA_Entrenamiento.ipynb)
 ```
 Comparativa de modelos
 ```
@@ -324,7 +325,7 @@ Análisis de sesgo
 ---
 
 ## 4. Demostración e Inferencias (Uso de Pipeline)
-El [**pipeline**](https://github.com/stikrobinson/Analisis_Rendimiento_Jugadores/blob/main/notebooks/02_pipeline_finalGrupo4.ipynb) contiene **todo el proceso automático de predicción del rendimiento (Overall)**, que se uso en el notebook de entrenamiento, de los jugadores FIFA-19. Integra desde la limpieza de datos hasta la predicción final del modelo optimizado (Random Forest Tuned).
+El [**pipeline final**](https://github.com/stikrobinson/Analisis_Rendimiento_Jugadores/blob/main/notebooks/02_pipeline_finalGrupo4.ipynb) contiene **todo el proceso automático de predicción del rendimiento (Overall)**, que se uso en el notebook de entrenamiento, de los jugadores FIFA-19. Integra desde la limpieza de datos hasta la predicción final del modelo optimizado (Random Forest Tuned).
 
 Incluye:
 - Limpieza y conversión de datos (altura, peso, salario, etc.).
