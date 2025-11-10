@@ -1,5 +1,5 @@
 # Analisis Rendimiento de Jugadores FIFA-19
-Aplicación de técnicas de análisis de datos para evaluar su rendimiento de jugadores de fútbol. Incluye limpieza de datos, exploración del dataset y la creación de un modelo predictivo utilizando técnicas de machine learning. El objetivo será predecir métricas de rendimiento (Overall) de los jugadores a partir de variables técnicas, físicas y económicas.
+Aplicación de técnicas de análisis de datos para evaluar su rendimiento de jugadores de fútbol. Incluye limpieza de datos, exploración del dataset y la creación de un modelo predictivo utilizando técnicas de machine learning. El objetivo será predecir métricas de rendimiento (Overall) de los jugadores a partir de variables técnicas, físicas y económicas. Para obtener las gráficas dadas se uso el [**notebook de entrenamiento**](https://github.com/stikrobinson/Analisis_Rendimiento_Jugadores/blob/main/notebooks/01_EDA_Entrenamiento.ipynb)
 
 ---
 
@@ -258,8 +258,7 @@ Esto coincide con el comportamiento real en el fútbol: los jugadores jóvenes s
 
 ---
 ## 4. Demostración e Inferencias (Uso de Pipeline)
-El [**pipeline**]([https://github.com/CrisPih/PulseraApp](https://github.com/stikrobinson/Analisis_Rendimiento_Jugadores/blob/main/notebooks/02_pipeline_finalGrupo4.ipynb)) contiene **todo el proceso automático de predicción del rendimiento (Overall)** de los jugadores FIFA-19.  
-Integra desde la limpieza de datos hasta la predicción final del modelo optimizado (Random Forest Tuned).
+El [**pipeline**](https://github.com/stikrobinson/Analisis_Rendimiento_Jugadores/blob/main/notebooks/02_pipeline_finalGrupo4.ipynb) contiene **todo el proceso automático de predicción del rendimiento (Overall)** de los jugadores FIFA-19. Integra desde la limpieza de datos hasta la predicción final del modelo optimizado (Random Forest Tuned).
 
 Incluye:
 - Limpieza y conversión de datos (altura, peso, salario, etc.).
