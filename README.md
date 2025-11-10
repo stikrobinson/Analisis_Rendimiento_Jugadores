@@ -23,7 +23,7 @@ Aplicación de técnicas de análisis de datos para evaluar su rendimiento de ju
 - [5️. Hallazgos Generales](#5-hallazgos-generales)
 - [6️. Conclusiones](#6-conclusiones)
 - [7️. Recomendaciones](#7-recomendaciones)
-- [8- Enlaces a Notebooks y Drive](#8-Enlaces-a-Notebooks-y-Drive)
+- [8. Enlaces a Notebooks y Drive](#8-Enlaces-a-Notebooks-y-Drive)
 
 ---
 
