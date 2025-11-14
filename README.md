@@ -30,7 +30,57 @@ Aplicación de técnicas de análisis de datos para evaluar su rendimiento de ju
 ## 1. Preparación y limpieza de los datos
 **Fuente: Dataset oficial FIFA-19 (Kaggle, versión 2019):** https://www.kaggle.com/datasets/javagarm/fifa-19-complete-player-dataset
 
-Procesos aplicados:
+### Dataset
+
+Los datos relevantes para el análisis que se realizó son:
+
+| Columna           | Descripción                                                                                 |
+|-------------------|---------------------------------------------------------------------------------------------|
+| Age               | Edad del jugador, medida en años.                                                           |
+| Overall           | Calificación general del jugador que va de una escala del 0 al 100.                         |
+| Potential         | Calificación máxima que puede alcanzar, que va de una escala del 0 al 100.                  |
+| Value             | Valor estimado del jugador en el mercado, expresado en dólares ($).                         |
+| Wage              | Salario semanal del jugador, expresado en dólares ($).                                      |
+| Work Rate         | Nivel de esfuerzo en ataque y defensa.                                                      |
+| Position          | Posición principal del jugador en el campo.                                                 |
+| Height            | Altura del jugador, medida en centímetros (cm).                                             |
+| Weight            | Peso del jugador, medido en kilogramos (kg).                                                |
+| Crossing          | Precisión en centros al área que va de una escala del 1 al 99.                              |
+| Finishing         | Habilidad para finalizar jugadas de gol que va de una escala del 1 al 99.                  |
+| Heading Accuracy  | Precisión en cabezazos que va de una escala del 1 al 99.                                    |
+| ShortPassing      | Precisión en pases cortos que va de una escala del 1 al 99.                                 |
+| Volleys           | Habilidad en disparos al vuelo que va de una escala del 1 al 99.                            |
+| Dribbling         | Capacidad de regatear o conducir el balón que va de una escala del 1 al 99.                |
+| Curve             | Habilidad para dar efecto al balón que va de una escala del 1 al 99.                        |
+| FKAccuracy        | Precisión en tiros libres que va de una escala del 1 al 99.                                 |
+| LongPassing       | Precisión en pases largos que va de una escala del 1 al 99.                                 |
+| BallControl       | Capacidad de controlar el balón que va de una escala del 1 al 99.                           |
+| Acceleration      | Rapidez inicial al arrancar que va de una escala del 1 al 99.                               |
+| SprintSpeed       | Velocidad máxima en carrera que va de una escala del 1 al 99.                               |
+| Agility           | Capacidad para moverse y girar con rapidez que va de una escala del 1 al 99.                |
+| Reactions         | Tiempo de reacción ante jugadas que va de una escala del 1 al 99.                           |
+| Balance           | Estabilidad al correr o al ser empujado que va de una escala del 1 al 99.                   |
+| ShotPower         | Potencia de tiro que va de una escala del 1 al 99.                                          |
+| Jumping           | Habilidad para saltar que va de una escala del 1 al 99.                                     |
+| Stamina           | Resistencia física que va de una escala del 1 al 99.                                        |
+| Strength          | Fuerza física general que va de una escala del 1 al 99.                                     |
+| LongShots         | Precisión en disparos lejanos que va de una escala del 1 al 99.                             |
+| Aggression        | Nivel de agresividad en el juego que va de una escala del 1 al 99.                          |
+| Interceptions     | Habilidad para interceptar pases que va de una escala del 1 al 99.                          |
+| Positioning       | Colocación en ataque que va de una escala del 1 al 99.                                      |
+| Vision            | Capacidad de ver y anticipar jugadas que va de una escala del 1 al 99.                      |
+| Penalties         | Precisión en tiros de penalti que va de una escala del 1 al 99.                             |
+| Composure         | Serenidad bajo presión que va de una escala del 1 al 99.                                    |
+| Marking           | Habilidad para marcar rivales que va de una escala del 1 al 99.                             |
+| StandingTackle    | Eficiencia en entradas de pie que va de una escala del 1 al 99.                             |
+| SlidingTackle     | Eficiencia en barridas que va de una escala del 1 al 99.                                    |
+| GKDiving          | Habilidad del portero para lanzarse que va de una escala del 1 al 99.                       |
+| GKHandling        | Capacidad del portero para atrapar el balón que va de una escala del 1 al 99.               |
+| GKKicking         | Precisión del saque del portero que va de una escala del 1 al 99.                           |
+| GKPositioning     | Colocación del portero que va de una escala del 1 al 99.                                    |
+| GKReflexes        | Reflejos del portero que va de una escala del 1 al 99.   
+
+### Procesos de limpieza
 
 - Eliminación de columnas no relevantes:
 'Photo', 'Flag', 'Club Logo', 'Real Face', 'Unnamed: 0', 'International Reputation', 'Nationality', 'Jersey Number', 'Joined', 'Loaned From', 'Contract Valid Until', 'Release Clause', 'Club'.
@@ -305,10 +355,14 @@ Interpretabilidad con SHAP
 
 ![Sesgo edad](Gráficas/sesgoE.PNG)
 
-Se observó que el modelo tiene mayor error en **jugadores jóvenes (15–25 años)**, ya que su rendimiento suele ser más variable.  
-En cambio, con jugadores adultos (25–35 años), el modelo es **más preciso y consistente**.
+Para este gráfico hay que notar que:
+Las barras azules (eje izquierdo) miden el MAE (Error Absoluto Medio).
+La línea roja (eje derecho) mide el Sesgo (Error Medio).
+Los jugadores de 15 a 25 años presentan un MAE alto pero un Sesgo bajo. Esto significa que el modelo es impreciso con ellos, pero no es injusto de forma sistemática. Los errores grandes se cancelan entre sí. Esto coincide con el comportamiento real: su rendimiento es más variable e impredecible.
 
-Esto coincide con el comportamiento real en el fútbol: los jugadores jóvenes son más impredecibles, mientras que los experimentados tienen un rendimiento más estable.
+Para los jugadores de 25 a 35 años hay un comportamiento es el opuesto. Tienen un MAE muy bajo, lo que indica que el modelo es muy preciso y sus predicciones son consistentes. Sin embargo, el Sesgo es alto. Esto revela un ligero sesgo sistemático: el modelo tiende a sobreestimar consistentemente el rendimiento de los jugadores más experimentados.
+
+Es importante notar que, aunque el sesgo en jugadores mayores es creciente, el error medio máximo es 0.05 aproximadamente. Por lo tanto, aunque existe esta tendencia a sobreestimar, el error sigue siendo relativamente bajo en términos absolutos, y el modelo es significativamente más preciso en este grupo.
 
 [Ver código relacionado en la sección *“Análisis de sesgo”* — copia lo de abajo y búscalo usando **Ctrl+F** en el notebook de entrenamiento.](https://github.com/stikrobinson/Analisis_Rendimiento_Jugadores/blob/main/notebooks/01_EDA_Entrenamiento.ipynb)
 ```
