@@ -1,5 +1,5 @@
 # Analisis Rendimiento de Jugadores FIFA-19
-Aplicación de técnicas de análisis de datos para evaluar su rendimiento de jugadores de fútbol. Incluye limpieza de datos, exploración del dataset y la creación de un modelo predictivo utilizando técnicas de machine learning. El objetivo será predecir métricas de rendimiento (Overall) de los jugadores a partir de variables técnicas, físicas y económicas. Para obtener las gráficas dadas se uso el [**notebook de entrenamiento**](https://github.com/stikrobinson/Analisis_Rendimiento_Jugadores/blob/main/notebooks/01_EDA_Entrenamiento.ipynb)
+Aplicación de técnicas de análisis de datos para evaluar su rendimiento de jugadores de fútbol. Incluye limpieza de datos, exploración del dataset y la creación de un modelo predictivo utilizando técnicas de machine learning. El objetivo será predecir métricas de rendimiento (Overall) de los jugadores a partir de variables técnicas, físicas y económicas. Para obtener las gráficas dadas se usó el [**notebook de entrenamiento**](https://github.com/stikrobinson/Analisis_Rendimiento_Jugadores/blob/main/notebooks/01_EDA_Entrenamiento.ipynb). Se recomienda abrir el notebook en otra pestaña para su visualización.
 
 ---
 
@@ -8,7 +8,7 @@ Aplicación de técnicas de análisis de datos para evaluar su rendimiento de ju
 - [1️. Preparación y limpieza de los datos](#1-preparación-y-limpieza-de-los-datos)
 - [2️. Análisis exploratorio (EDA)](#2-análisis-exploratorio-eda)
   - [Análisis univarido](#análisis-univarido)
-  - [Análisis bivariados](#análisis-bivariados)
+  - [Análisis bivariado](#análisis-bivariado)
   - [Análisis multivariado](#análisis-multivariado)
 - [3️. Entrenamiento del modelo](#3-entrenamiento-del-modelo)
   - [Importancia de las variables](#importancia-de-las-variables)
@@ -23,62 +23,13 @@ Aplicación de técnicas de análisis de datos para evaluar su rendimiento de ju
 - [5️. Hallazgos Generales](#5-hallazgos-generales)
 - [6️. Conclusiones](#6-conclusiones)
 - [7️. Recomendaciones](#7-recomendaciones)
+- [8. Enlaces a Notebooks y Drive](#8-Enlaces-a-Notebooks-y-Drive)
 
 ---
 
 ## 1. Preparación y limpieza de los datos
-
-### Dataset
 **Fuente: Dataset oficial FIFA-19 (Kaggle, versión 2019):** https://www.kaggle.com/datasets/javagarm/fifa-19-complete-player-dataset
 
-Los datos relevantes para el análisis que se realizó son:
-| Columna | Descripción |
-|:---|:---|
-| **Age** | Edad del jugador, medida en Años. |
-| **Overall** | Calificación general del jugador que va de una escala del 0 al 100. |
-| **Potential** | Calificación máxima que puede alcanzar, que va de una escala del 0 al 100. |
-| **Value** | Valor estimado del jugador en el mercado, expresado en dólares ($). |
-| **Wage** | Salario semanal del jugador, expresado en dólares ($). |
-| **Work Rate** | Nivel de esfuerzo en ataque y defensa. |
-| **Position** | Posición principal del jugador en el campo. |
-| **Height** | Altura del jugador, medida en Centímetros (cm). |
-| **Weight** | Peso del jugador, medido en Kilogramos (kg). |
-| **Crossing** | Precisión en centros al área que va de una escala del 1 al 99. |
-| **Finishing** | Habilidad para finalizar jugadas de gol que va de una escala del 1 al 99. |
-| **Heading Accuracy** | Precisión en cabezazos que va de una escala del 1 al 99. |
-| **ShortPassing** | Precisión en pases cortos que va de una escala del 1 al 99. |
-| **Volleys** | Habilidad en disparos al vuelo que va de una escala del 1 al 99. |
-| **Dribbling** | Capacidad de regatear o conducir el balón que va de una escala del 1 al 99. |
-| **Curve** | Habilidad para dar efecto al balón que va de una escala del 1 al 99. |
-| **FKAccuracy** | Precisión en tiros libres que va de una escala del 1 al 99. |
-| **LongPassing** | Precisión en pases largos que va de una escala del 1 al 99. |
-| **BallControl** | Capacidad de controlar el balón que va de una escala del 1 al 99. |
-| **Acceleration** | Rapidez inicial al arrancar que va de una escala del 1 al 99. |
-| **SprintSpeed** | Velocidad máxima en carrera que va de una escala del 1 al 99. |
-| **Agility** | Capacidad para moverse y girar con rapidez que va de una escala del 1 al 99. |
-| **Reactions** | Tiempo de reacción ante jugadas que va de una escala del 1 al 99. |
-| **Balance** | Estabilidad al correr o al ser empujado que va de una escala del 1 al 99. |
-| **ShotPower** | Potencia de tiro que va de una escala del 1 al 99. |
-| **Jumping** | Habilidad para saltar que va de una escala del 1 al 99. |
-| **Stamina** | Resistencia física que va de una escala del 1 al 99. |
-| **Strength** | Fuerza física general que va de una escala del 1 al 99. |
-| **LongShots** | Precisión en disparos lejanos que va de una escala del 1 al 99. |
-| **Aggression** | Nivel de agresividad en el juego que va de una escala del 1 al 99. |
-| **Interceptions** | Habilidad para interceptar pases que va de una escala del 1 al 99. |
-| **Positioning** | Colocación en ataque que va de una escala del 1 al 99. |
-| **Vision** | Capacidad de ver y anticipar jugadas que va de una escala del 1 al 99. |
-| **Penalties** | Precisión en tiros de penalti que va de una escala del 1 al 99. |
-| **Composure** | Serenidad bajo presión que va de una escala del 1 al 99. |
-| **Marking** | Habilidad para marcar rivales que va de una escala del 1 al 99. |
-| **StandingTackle** | Eficiencia en entradas de pie que va de una escala del 1 al 99. |
-| **SlidingTackle** | Eficiencia en barridas que va de una escala del 1 al 99. |
-| **GKDiving** | Habilidad del portero para lanzarse que va de una escala del 1 al 99. |
-| **GKHandling** | Capacidad del portero para atrapar el balón que va de una escala del 1 al 99. |
-| **GKKicking** | Precisión del saque del portero que va de una escala del 1 al 99. |
-| **GKPositioning** | Colocación del portero que va de una escala del 1 al 99. |
-| **GKReflexes** | Reflejos del portero que va de una escala del 1 al 99. |
-
-### Procesos de limpieza
 Procesos aplicados:
 
 - Eliminación de columnas no relevantes:
@@ -92,12 +43,16 @@ Procesos aplicados:
   
 - Eliminación de registros nulos en atributos críticos (Overall, Potential, ValueUSD, WageUSD).
 
+[Ver código relacionado en la sección *“Limpieza inicial”* — copia lo de abajo y búscala usando **Ctrl+F** en el notebook de entrenamiento.](https://github.com/stikrobinson/Analisis_Rendimiento_Jugadores/blob/main/notebooks/01_EDA_Entrenamiento.ipynb)
+```
+Limpieza inicial
+```
+
 ---
 ## 2. Análisis exploratorio (EDA)
 ### Análisis univarido
 
 Se examinaron las distribuciones de las principales variables (Overall, Special, Log(ValueUSD)) por rol: atacantes, mediocampistas, defensas y arqueros.
-
 
 **Gráficas atacantes:**
 ![Jugadores Atacantes](Gráficas/univarialAtacantes.png)
@@ -119,26 +74,10 @@ Se examinaron las distribuciones de las principales variables (Overall, Special,
 
 Los jugadores de campo siguen patrones similares de rendimiento y valor, mientras que los arqueros conforman un grupo estadísticamente distinto, lo que valida su análisis y modelado independiente.
 
-
-### Análisis bivariados
-
-![Bivariado campos](Gráficas/bivarialCampo.png)
-
-- Potential vs Overall: relación casi lineal y positiva → los jugadores con mayor potencial tienden a tener un mejor rendimiento actual.
-
-- Special vs Overall: correlación muy alta → las habilidades técnicas agregadas son un fuerte indicador del desempeño.
-
-- Age vs Overall: relación no lineal → el rendimiento crece hasta los 28–30 años y luego declina, justificando la variable Age².
-
-- Log(ValueUSD) vs Overall: crecimiento logarítmico → el valor de mercado se estabiliza en jugadores élite, lo que muestra una saturación económica natural.
-
-  
-![Bivariado campos](Gráficas/gkdivingArquero.png)
-
-- En arqueros, la variable GKDiving tiene la mayor influencia sobre Overall, reflejando la dependencia de habilidades específicas.
-
-Estas relaciones confirman que Potential, Special, WageUSD y Age² son las variables más relevantes para el modelado predictivo del rendimiento.
-
+[Ver código relacionado en la sección *“Análisis de cada variable”* — copia lo de abajo y búscalo usando **Ctrl+F** en el notebook de entrenamiento.](https://github.com/stikrobinson/Analisis_Rendimiento_Jugadores/blob/main/notebooks/01_EDA_Entrenamiento.ipynb)
+```
+Análisis de cada variable
+```
 
 
 ### Análisis multivariado
@@ -169,6 +108,34 @@ En base a la matriz se obtiene:
 - El valor de mercado crece exponencialmente hasta un **punto de saturación** alrededor de `Overall = 80`.  
 - El **rol** no influye significativamente en la calificación general (p > 0.05).
 
+[Ver código relacionado en la sección *“Análisis multivariado”* — copia lo de abajo y búscalo usando **Ctrl+F** en el notebook de entrenamiento.](https://github.com/stikrobinson/Analisis_Rendimiento_Jugadores/blob/main/notebooks/01_EDA_Entrenamiento.ipynb)
+```
+Análisis multivariado
+```
+
+### Análisis bivariado
+
+![Bivariado campos](Gráficas/bivarialCampo.png)
+
+- Potential vs Overall: relación casi lineal y positiva → los jugadores con mayor potencial tienden a tener un mejor rendimiento actual.
+
+- Special vs Overall: correlación muy alta → las habilidades técnicas agregadas son un fuerte indicador del desempeño.
+
+- Age vs Overall: relación no lineal → el rendimiento crece hasta los 28–30 años y luego declina, justificando la variable Age².
+
+- Log(ValueUSD) vs Overall: crecimiento logarítmico → el valor de mercado se estabiliza en jugadores élite, lo que muestra una saturación económica natural.
+  
+![Bivariado campos](Gráficas/gkdivingArquero.png)
+
+- En arqueros, la variable GKDiving tiene la mayor influencia sobre Overall, reflejando la dependencia de habilidades específicas.
+
+Estas relaciones confirman que Potential, Special, WageUSD y Age² son las variables más relevantes para el modelado predictivo del rendimiento.
+
+[Ver código relacionado en la sección *“Análisis Bivariado”* — copia lo de abajo y búscalo usando **Ctrl+F** en el notebook de entrenamiento.](https://github.com/stikrobinson/Analisis_Rendimiento_Jugadores/blob/main/notebooks/01_EDA_Entrenamiento.ipynb)
+```
+Análisis Bivariado
+```
+
 
 ---
 
@@ -194,6 +161,11 @@ Esta gráfica muestra qué características fueron más influyentes en la predic
 
 En conjunto, el modelo aprendió una lógica **coherente con la realidad del fútbol profesional**: los jugadores con más experiencia, mejor salario y mayor potencial suelen tener un rendimiento más alto.
 
+[Ver código relacionado en la sección *“Selección de features”* — copia lo de abajo y búscalo usando **Ctrl+F** en el notebook de entrenamiento.](https://github.com/stikrobinson/Analisis_Rendimiento_Jugadores/blob/main/notebooks/01_EDA_Entrenamiento.ipynb)
+```
+Selección de features
+```
+
 ---
 
 ### Efecto de la edad y la edad²
@@ -201,11 +173,16 @@ En conjunto, el modelo aprendió una lógica **coherente con la realidad del fú
 ![Efecto de la edad](Gráficas/edad.PNG)
 ![Relación entre la edad y el rendimiento](Gráficas/disperEdad.PNG)
 
-El gráfico muestra cómo cambia el rendimiento con la edad.  
+Mediante el modelo de regresión lineal el gráfico muestra cómo cambia el rendimiento con la edad.  
 Aunque mantenga una curva descendente su relación con el rendimiento no presenta linealidad, ya que la edad es un factor que refleza madurez de juego en conjunto con el descenso en cualidades físicas.  
 
 Esto refleja que los jugadores jóvenes están en crecimiento, los adultos alcanzan su pico, y los veteranos bajan su nivel.  
 Por eso fue necesario incluir **`Age²` (edad al cuadrado)**: permite al modelo entender **una relación curvada**, más realista que una línea recta.
+
+[Ver código relacionado en la sección *“Entrenamiento del módelo base”* — copia lo de abajo y búscalo usando **Ctrl+F** en el notebook de entrenamiento.](https://github.com/stikrobinson/Analisis_Rendimiento_Jugadores/blob/main/notebooks/01_EDA_Entrenamiento.ipynb)
+```
+Entrenamiento del módelo base
+```
 
 ---
 
@@ -219,12 +196,27 @@ Se compararon tres enfoques:
 |--------|----------------|-------------------|------|
 | **Random Forest Tuned** | **0.962** | **0.872** | **1.331** |
 | Random Forest Base | 0.957 | 0.910 | 1.470 |
-| Lineal | 0.951 | 1.123 | 1.480 |
+| Regresion Lineal | 0.951 | 1.123 | 1.480 |
 
 - Cuanto mayor es el valor de R², más cerca está la predicción de los datos reales.  
 - Cuanto menores son MAE y RMSE, menos se equivoca el modelo.
 
 El modelo **Random Forest Tuned** es el más preciso, reduciendo los errores y explicando el **96% del rendimiento real** de los jugadores.
+
+[Ver código relacionado en la sección *“Entrenamiento de módelo complejo”* — copia lo de abajo y búscalo usando **Ctrl+F** en el notebook de entrenamiento.](https://github.com/stikrobinson/Analisis_Rendimiento_Jugadores/blob/main/notebooks/01_EDA_Entrenamiento.ipynb)
+```
+Entrenamiento de módelo complejo
+```
+
+[Ver código relacionado en la sección *“Hypertuning con Optuna (Random Forest) Fields”* — copia lo de abajo y búscalo usando **Ctrl+F** en el notebook de entrenamiento.](https://github.com/stikrobinson/Analisis_Rendimiento_Jugadores/blob/main/notebooks/01_EDA_Entrenamiento.ipynb)
+```
+Hypertuning con Optuna (Random Forest) Fields
+```
+
+[Ver código relacionado en la sección *“Comparativa de modelos”* — copia lo de abajo y búscalo usando **Ctrl+F** en el notebook de entrenamiento.](https://github.com/stikrobinson/Analisis_Rendimiento_Jugadores/blob/main/notebooks/01_EDA_Entrenamiento.ipynb)
+```
+Comparativa de modelos
+```
 
 ---
 
@@ -240,6 +232,12 @@ Cada punto representa un jugador:
 
 Los puntos verdes (**Random Forest Tuned**) están más cerca de la línea roja que los azules (**Lineal**), mostrando que el modelo optimizado predice con mayor precisión.
 
+
+[Ver código relacionado en la sección *“Hypertuning con Optuna (Random Forest) GK”* — copia lo de abajo y búscalo usando **Ctrl+F** en el notebook de entrenamiento.](https://github.com/stikrobinson/Analisis_Rendimiento_Jugadores/blob/main/notebooks/01_EDA_Entrenamiento.ipynb)
+```
+Hypertuning con Optuna (Random Forest) GK
+```
+
 ---
 
 ### Distribución de errores o residuos
@@ -253,6 +251,10 @@ Su forma de campana indica que los errores son pequeños y aleatorios, sin tende
 
 Esto demuestra que el modelo es **estable, confiable y sin sesgos evidentes**.
 
+[Ver código relacionado en la sección *“Análisis de residuos”* — copia lo de abajo y búscalo usando **Ctrl+F** en el notebook de entrenamiento.](https://github.com/stikrobinson/Analisis_Rendimiento_Jugadores/blob/main/notebooks/01_EDA_Entrenamiento.ipynb)
+```
+Análisis de residuos
+```
 ---
 
 ### Importancia por Rol
@@ -274,6 +276,12 @@ Por motivos de investigación se entrenaron modelos específicos para cada tipo 
 
 Cada modelo reflejó correctamente las **habilidades específicas de cada posición** dentro del campo.
 
+[Ver código relacionado en la sección *“Modelos por roles especificoss”* — copia lo de abajo y búscalo usando **Ctrl+F** en el notebook de entrenamiento.](https://github.com/stikrobinson/Analisis_Rendimiento_Jugadores/blob/main/notebooks/01_EDA_Entrenamiento.ipynb)
+```
+Modelos por roles especificos
+```
+
+
 ---
 
 ### Interpretabilidad con SHAP
@@ -287,21 +295,31 @@ Cada punto es un jugador:
 
 Esto permite entender **cómo y por qué el modelo llega a cada resultado**, haciendo el modelo **transparente y explicable**.
 
+[Ver código relacionado en la sección *“Interpretabilidad con SHAP”* — copia lo de abajo y búscalo usando **Ctrl+F** en el notebook de entrenamiento.](https://github.com/stikrobinson/Analisis_Rendimiento_Jugadores/blob/main/notebooks/01_EDA_Entrenamiento.ipynb)
+```
+Interpretabilidad con SHAP
+```
 ---
 
 ### Sesgo por edad
 
 ![Sesgo edad](Gráficas/sesgoE.PNG)
 
-Para este gráfico hay que notar que:
-* Las **barras azules (eje izquierdo)** miden el **MAE (Error Absoluto Medio)**. 
-* La **línea roja (eje derecho)** mide el **Sesgo (Error Medio)**. 
+Se observó que el modelo tiene mayor error en **jugadores jóvenes (15–25 años)**, ya que su rendimiento suele ser más variable.  
+En cambio, con jugadores adultos (25–35 años), el modelo es **más preciso y consistente**.
 
-Los jugadores de 15 a 25 años presentan un **MAE alto** pero un **Sesgo bajo**. Esto significa que el modelo es impreciso con ellos, pero no es injusto de forma sistemática. Los errores grandes se cancelan entre sí. Esto coincide con el comportamiento real: su rendimiento es más variable e impredecible.
+Esto coincide con el comportamiento real en el fútbol: los jugadores jóvenes son más impredecibles, mientras que los experimentados tienen un rendimiento más estable.
 
-Para los jugadores de 25 a 35 años hay un comportamiento es el opuesto. Tienen un **MAE muy bajo**, lo que indica que el modelo es muy preciso y sus predicciones son consistentes. Sin embargo, el **Sesgo es alto**. Esto revela un ligero sesgo sistemático: el modelo tiende a sobreestimar consistentemente el rendimiento de los jugadores más experimentados.
+[Ver código relacionado en la sección *“Análisis de sesgo”* — copia lo de abajo y búscalo usando **Ctrl+F** en el notebook de entrenamiento.](https://github.com/stikrobinson/Analisis_Rendimiento_Jugadores/blob/main/notebooks/01_EDA_Entrenamiento.ipynb)
+```
+Análisis de sesgo
+```
 
-Es importante notar que, aunque el sesgo en jugadores mayores es creciente, el error medio máximo es 0.05 aproximadamente. Por lo tanto, aunque existe esta tendencia a sobreestimar, el error sigue siendo relativamente bajo en términos absolutos, y el modelo es significativamente más preciso en este grupo.
+Si desea ver una prueba del modelo en el notebook de entrenamiento de click en:
+[Ver código relacionado en la sección *“Guardar y probar Modelos”* — copia lo de abajo y búscalo usando **Ctrl+F** en el notebook de entrenamiento.](https://github.com/stikrobinson/Analisis_Rendimiento_Jugadores/blob/main/notebooks/01_EDA_Entrenamiento.ipynb)
+```
+Guardar y probar Modelos
+```
 
 ---
 
@@ -312,8 +330,9 @@ Es importante notar que, aunque el sesgo en jugadores mayores es creciente, el e
 - El modelo es explicable, confiable y generaliza bien para distintos tipos de jugadores.
 
 ---
+
 ## 4. Demostración e Inferencias (Uso de Pipeline)
-El [**pipeline**](https://github.com/stikrobinson/Analisis_Rendimiento_Jugadores/blob/main/notebooks/02_pipeline_finalGrupo4.ipynb) contiene **todo el proceso automático de predicción del rendimiento (Overall)** de los jugadores FIFA-19. Integra desde la limpieza de datos hasta la predicción final del modelo optimizado (Random Forest Tuned).
+El [**pipeline final**](https://github.com/stikrobinson/Analisis_Rendimiento_Jugadores/blob/main/notebooks/02_pipeline_finalGrupo4.ipynb) es un notebook que contiene **todo el proceso automático de predicción del rendimiento (Overall)**, que se uso en el notebook de entrenamiento, de los jugadores FIFA-19. Integra desde la limpieza de datos hasta la predicción final del modelo optimizado (Random Forest Tuned).
 
 Incluye:
 - Limpieza y conversión de datos (altura, peso, salario, etc.).
@@ -408,3 +427,11 @@ En conclusión, el pipeline implementado predice de forma precisa y coherente el
 - Dado que variables como WeightKG (0.9%), HeightCM (0.6%), WorkRate_Att (0.19%) y WorkRate_Def (0.19%) tienen una influencia prácticamente nula, se recomienda eliminarlas del modelo. Esto puede simplificar el modelo sin afectar significativamente su precisión.
 - Probar otros algoritmos como XGBoost, dado que suelen ser más precisos que el Random Forest y ofrecen mejor rendimiento y velocidad, especialmente con datos grandes.
 - Agregar información más reciente sobre jugadores de la FIFA, para hacer el modelo más general donde se incluyan variables nuevas que puedan influir en el rendimiento como minutos jugados, lesiones o goles.
+
+---
+## 8. Enlaces a Notebooks y Drive
+
+- [Notebook de Entrenamiento (Google Colab)](https://colab.research.google.com/drive/1CV4A89s6n06vLtWyKsJjBsiSr05DyIii?usp=drive_link)  
+- [Notebook del Pipeline (Google Colab)](https://colab.research.google.com/drive/1ABM014XjRE1EhuvxFntD0p7XkrRxnIUM?usp=drive_link)  
+- [Carpeta del Proyecto en Google Drive creado por el grupo](https://drive.google.com/drive/folders/1kMXumeS8drUEzXPOqqA-7oD0u9KlBEjI?usp=drive_link)
+- [Carpeta del Proyecto en Google Drive de CIAP](https://drive.google.com/drive/folders/1dVT5G9Yg4nLEMVhBxX5_v2F4Sc831nfB?usp=drive_link)
